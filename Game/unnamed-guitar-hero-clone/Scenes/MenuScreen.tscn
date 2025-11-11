@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bpnakkn3c27c6"]
+[gd_scene load_steps=2 format=3 uid="uid://bpnakkn3c27c6"]
+
+[ext_resource type="Script" uid="uid://c5ei11esrfemx" path="res://Scripts/MenuScreen.cs" id="1_33mj8"]
 
 [node name="MenuScreen" type="Control"]
 layout_mode = 3
@@ -9,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_33mj8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -45,3 +48,8 @@ text = "Leaderboards"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Button5" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="OnLeaderboardButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="OnExitButtonPressed"]

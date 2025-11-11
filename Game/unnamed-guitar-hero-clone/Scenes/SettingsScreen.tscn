@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://061m6dgp85uf"]
+[gd_scene load_steps=2 format=3 uid="uid://061m6dgp85uf"]
+
+[ext_resource type="Script" uid="uid://wi6sfnbwy546" path="res://Scripts/SettingsScreen.cs" id="1_3byia"]
 
 [node name="SettingsScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -12,6 +14,7 @@ theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
+script = ExtResource("1_3byia")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -97,3 +100,13 @@ layout_mode = 2
 
 [node name="CheckButton3" type="CheckButton" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer4"]
 layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="ReturnBtn" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "Return to menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/ReturnBtn" to="." method="OnReturnBtnPressed"]
