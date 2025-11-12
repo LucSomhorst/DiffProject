@@ -19,4 +19,14 @@ public partial class SettingsScreen : MarginContainer
 	{
 		EmitSignalReturnBtn();
 	}
+
+	private void SaveChangesBtnPressed()
+	{
+		
+	}
+
+	private void RevertToStandardBtnPressed()
+	{
+		
+	}
 }
