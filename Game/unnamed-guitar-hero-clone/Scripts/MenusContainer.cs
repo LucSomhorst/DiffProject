@@ -2,7 +2,7 @@ using Godot;
 
 namespace UnnamedGuitarHeroClone.Scripts;
 
-public partial class MenusContainer : AspectRatioContainer
+public partial class MenusContainer : PanelContainer
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
