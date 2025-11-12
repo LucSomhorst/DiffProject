@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1un6hxfwmlya"]
+
+[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/Block.tscn" id="1_efpv0"]
+[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://scenes/Hitzone.tscn" id="2_hwg7k"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_efpv0")]
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+zoom = Vector2(4, 4)
+
+[node name="Hitzone" parent="." instance=ExtResource("2_hwg7k")]
+position = Vector2(0, 296)
