@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c36rbmwrgkxhp"]
+[gd_scene load_steps=5 format=3 uid="uid://c36rbmwrgkxhp"]
 
 [ext_resource type="Script" uid="uid://j6ic7e6gyp8r" path="res://Scripts/Main.cs" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://sc4hmbkohm3w" path="res://Scripts/GameContainer.cs" id="2_8gbba"]
 [ext_resource type="Script" uid="uid://d20t25ql1jpbc" path="res://Scripts/MenusContainer.cs" id="2_bo1nx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bo1nx"]
@@ -17,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_8gbba")
 
 [node name="MenusContainer" type="PanelContainer" parent="."]
 material = SubResource("CanvasItemMaterial_bo1nx")

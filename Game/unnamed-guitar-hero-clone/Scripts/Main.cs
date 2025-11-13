@@ -14,6 +14,13 @@ public partial class Main : Node
 	{
 	}
 
+	private void StartGame()
+	{
+		var menuNode = (PanelContainer)GetNode("MenusContainer");
+		menuNode.Hide();
+		var gameNode = (PanelContainer)GetNode("GameContainer");
+		gameNode.Show();
+	}
 	private void Exit()
 	{
 		GetTree().Quit();
