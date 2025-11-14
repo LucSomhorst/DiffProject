@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://45jmhwbimkqs"]
+[gd_scene load_steps=4 format=3 uid="uid://45jmhwbimkqs"]
 
 [ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://Scripts/ScoreboardScreen.cs" id="1_yx26b"]
+[ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_qwao4"]
+[ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Scenes/InnerMenuTheme.tres" id="3_agcct"]
 
 [node name="ScoreboardScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -9,13 +11,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_bottom = 50
 script = ExtResource("1_yx26b")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("2_qwao4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -26,63 +29,103 @@ theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Leaderboard"
+horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_agcct")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer2"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "sorting"
+text = "Name
+"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer2"]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "sorting"
+text = "Score
+"
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer2"]
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "sorting"
+text = "Level"
 
-[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer2"]
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "sorting"
+text = "Time"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 40
+columns = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 3
 text = "Name"
+horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Score"
+horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-text = "level?"
+size_flags_horizontal = 3
+text = "Level"
+horizontal_alignment = 1
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Time"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ReturnBtn" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+[node name="ReturnBtn" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
 text = "Return to menu"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/ReturnBtn" to="." method="OnReturnBtnPressed"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ReturnBtn" to="." method="OnReturnBtnPressed"]
