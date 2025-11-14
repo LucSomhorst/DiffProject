@@ -52,13 +52,12 @@ public partial class MenusContainer : PanelContainer
 		scoreboardScreen.ReturnBtn += OpenMenuScreen;
 		GD.Print("ScoreboardScreen");
 	}
-	private void EndGame()
-	{
-		//
-	}
+	
 	private void StartGame()
 	{
-		//
+		var main = (Main)GetParent();
+		
+		main.StartGame();
 	}
 
 	private void ExitGame()
