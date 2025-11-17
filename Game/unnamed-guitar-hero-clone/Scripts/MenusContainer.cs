@@ -30,27 +30,24 @@ public partial class MenusContainer : PanelContainer
 	}
 	
 
-	private void OpenMenuScreen()
+	public void OpenMenuScreen()
 	{
 		var menuScreen = (MenuScreen)ChangeScene("MenuScreen");
 		menuScreen.SettingsBtn += OpenSettingsScreen;
 		menuScreen.ExitBtn += ExitGame;
 		menuScreen.ScoreBoardBtn += OpenScoreboardScreen;
 		menuScreen.StartBtn += StartGame;
-		GD.Print("MenuScreen");
 	}
 
 	private void OpenSettingsScreen()
 	{
 		var settingsScreen = (SettingsScreen)ChangeScene("SettingsScreen");
 		settingsScreen.ReturnBtn += OpenMenuScreen;
-		GD.Print("SettingsScreen");
 	}
 	private void OpenScoreboardScreen()
 	{
 		var  scoreboardScreen = (ScoreboardScreen)ChangeScene("ScoreboardScreen");
 		scoreboardScreen.ReturnBtn += OpenMenuScreen;
-		GD.Print("ScoreboardScreen");
 	}
 	
 	private void StartGame()

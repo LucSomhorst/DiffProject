@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using UnnamedGuitarHeroClone.Scripts;
 
 public partial class SettingsScreen : MarginContainer
 {
@@ -21,12 +22,31 @@ public partial class SettingsScreen : MarginContainer
 	{
 		ConfigLocal.Load("res://settings.cfg");
 		SetSettingsUI();
-		
+		SetKeybindsUI();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+
+	private void SetKeybindsUI()
+	{
+		var keybindsContainer = (VBoxContainer)GetNode("%KeybindVBox");
+		var keybinds = ConfigLocal.GetSectionKeys("Keybinds");
+		foreach (var keybind in keybinds)
+		{
+			var packedScene = ResourceLoader.Load<PackedScene>($"res://Scenes/KeybindLine.tscn");
+			var NodeScene = (KeybindLine)packedScene.Instantiate();
+			var value = ConfigLocal.GetValue("Keybinds", keybind).ToString();
+			NodeScene.Constructor(keybind, value, this);
+			keybindsContainer.AddChild(NodeScene);
+		}
+	}
+
+	public void KeyBindChanged(string key, string value)
+	{
+		ConfigLocal.SetValue("Keybinds",key,value);
 	}
 	
 	private void SetSettingsUI()
