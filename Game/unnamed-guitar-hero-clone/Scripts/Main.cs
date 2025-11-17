@@ -18,9 +18,14 @@ public partial class Main : Node
 
 	public void StartGame()
 	{
-		var menuNode = (PanelContainer)GetNode("MenusContainer");
-		menuNode.Hide();
-		var gameNode = (PanelContainer)GetNode("GameContainer");
+		var menuNode = (MenusContainer)GetNode("MenusContainer");
+		var children =  menuNode.GetChildren();
+		foreach (var child in children)
+		{
+			child.QueueFree();
+		}
+		var gameNode = (GameContainer)GetNode("GameContainer");
+		//start game function
 		gameNode.Show();
 	}
 	private void Exit()
@@ -30,7 +35,16 @@ public partial class Main : Node
 
 	public void EndGame()
 	{
-		
+		var gameNode = (GameContainer)GetNode("GameContainer");
+		gameNode.Hide();
+		var children =  gameNode.GetChildren();
+		foreach (var child in children)
+		{
+			child.QueueFree();
+		}
+		var menuNode = (MenusContainer)GetNode("MenusContainer");
+		menuNode.OpenMenuScreen();
+		menuNode.Show();
 	}
 
 	private void ApplySettings()

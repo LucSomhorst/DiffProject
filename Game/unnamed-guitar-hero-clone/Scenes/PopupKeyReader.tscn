@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqd6f0hofkpqy"]
+
+[ext_resource type="Script" uid="uid://lnun12000cyg" path="res://Scripts/PopupKeyReader.cs" id="1_pusi6"]
+
+[node name="PopupKeyReader" type="Popup"]
+visible = true
+script = ExtResource("1_pusi6")
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+size = Vector2i(336, 100)
+visible = true
+borderless = false
+always_on_top = true
+
+[node name="Label" type="Label" parent="PopupPanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 332.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Enter any key"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://061m6dgp85uf"]
+[gd_scene load_steps=7 format=3 uid="uid://061m6dgp85uf"]
 
 [ext_resource type="Script" uid="uid://wi6sfnbwy546" path="res://Scripts/SettingsScreen.cs" id="1_3byia"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_rl25b"]
 [ext_resource type="Theme" uid="uid://dsh3vsyfgtpy3" path="res://Themes/MenuTextTheme.tres" id="3_asj4v"]
-[ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Scenes/InnerMenuTheme.tres" id="3_fwhkt"]
+[ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Themes/InnerMenuTheme.tres" id="3_fwhkt"]
+[ext_resource type="Theme" uid="uid://u2ki7ed1tlhf" path="res://Themes/MenuButtonTextTheme.tres" id="5_aljbi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rl25b"]
 
@@ -42,19 +43,21 @@ theme_override_font_sizes/font_size = 50
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MainWindowMargin/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MainWindowMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("3_fwhkt")
+current_tab = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer"]
+[node name="Options" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer"]
 layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 50
@@ -62,28 +65,28 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("3_asj4v")
 text = "Window mode"
 
-[node name="WindowMode" type="OptionButton" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="WindowMode" type="OptionButton" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("5_aljbi")
 selected = 0
 item_count = 3
 popup/item_0/text = "Windowed"
@@ -93,23 +96,23 @@ popup/item_1/id = 1
 popup/item_2/text = "Borderless fullscreen"
 popup/item_2/id = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("3_asj4v")
 text = "Resolution"
 
-[node name="Resolution" type="OptionButton" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Resolution" type="OptionButton" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("5_aljbi")
 selected = 2
 item_count = 8
 popup/item_0/text = "3840×2160"
@@ -129,23 +132,23 @@ popup/item_6/id = 5
 popup/item_7/text = "1280x720"
 popup/item_7/id = 2
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer8" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("3_asj4v")
 text = "Ui Scale"
 
-[node name="UIScale" type="OptionButton" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="UIScale" type="OptionButton" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("5_aljbi")
 selected = 1
 item_count = 3
 popup/item_0/text = "150%"
@@ -155,87 +158,108 @@ popup/item_1/id = 1
 popup/item_2/text = "50%"
 popup/item_2/id = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_asj4v")
 text = "Screenshake"
 
-[node name="Screenshake" type="CheckButton" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Screenshake" type="CheckButton" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/disabled = SubResource("StyleBoxFlat_rl25b")
 expand_icon = true
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("3_asj4v")
 text = "Volume"
 
-[node name="MuteAll" type="Button" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="MuteAll" type="Button" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("5_aljbi")
 text = "Mute all"
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
 theme = ExtResource("3_asj4v")
 text = "Music"
 
-[node name="MusicSlider" type="HSlider" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="MusicSlider" type="HSlider" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MusicValueLabel" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="MusicValueLabel" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("3_asj4v")
+theme = ExtResource("5_aljbi")
 theme_type_variation = &"HeaderSmall"
 text = "100"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("3_asj4v")
 text = "Sound"
 
-[node name="SoundSlider" type="HSlider" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SoundSlider" type="HSlider" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SoundValueLabel" type="Label" parent="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SoundValueLabel" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("3_asj4v")
+theme = ExtResource("5_aljbi")
 theme_type_variation = &"HeaderSmall"
 text = "100"
+
+[node name="Keybinds" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Keybinds"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Keybinds/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="KeybindVBox" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Keybinds/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="MainWindowMargin/VBoxContainer"]
 layout_mode = 2
@@ -261,14 +285,14 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
 text = "Save Changes"
 
-[connection signal="item_selected" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/WindowMode" to="." method="SettingChanged" binds= ["window"]]
-[connection signal="item_selected" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/Resolution" to="." method="SettingChanged" binds= ["resolution"]]
-[connection signal="item_selected" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/UIScale" to="." method="SettingChanged" binds= ["uiscale"]]
-[connection signal="toggled" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Screenshake" to="." method="SettingChanged" binds= ["screenshake"]]
-[connection signal="drag_ended" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/MusicSlider" to="." method="SettingChanged" binds= ["musicvolume"]]
-[connection signal="value_changed" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/MusicSlider" to="." method="MusicSliderValueChanged"]
-[connection signal="drag_ended" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/SoundSlider" to="." method="SettingChanged" binds= ["soundvolume"]]
-[connection signal="value_changed" from="MainWindowMargin/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/SoundSlider" to="." method="SoundSliderValueChanged"]
+[connection signal="item_selected" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/WindowMode" to="." method="SettingChanged" binds= ["window"]]
+[connection signal="item_selected" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/Resolution" to="." method="SettingChanged" binds= ["resolution"]]
+[connection signal="item_selected" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/UIScale" to="." method="SettingChanged" binds= ["uiscale"]]
+[connection signal="toggled" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Screenshake" to="." method="SettingChanged" binds= ["screenshake"]]
+[connection signal="drag_ended" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/MusicSlider" to="." method="SettingChanged" binds= ["musicvolume"]]
+[connection signal="value_changed" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/MusicSlider" to="." method="MusicSliderValueChanged"]
+[connection signal="drag_ended" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/SoundSlider" to="." method="SettingChanged" binds= ["soundvolume"]]
+[connection signal="value_changed" from="MainWindowMargin/VBoxContainer/TabContainer/Options/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/SoundSlider" to="." method="SoundSliderValueChanged"]
 [connection signal="pressed" from="MainWindowMargin/VBoxContainer/HBoxContainer6/ReturnBtn" to="." method="OnReturnBtnPressed"]
 [connection signal="pressed" from="MainWindowMargin/VBoxContainer/HBoxContainer6/RevertBtn" to="." method="RevertToStandardBtnPressed"]
 [connection signal="pressed" from="MainWindowMargin/VBoxContainer/HBoxContainer6/SaveBtn" to="." method="SaveChangesBtnPressed"]
