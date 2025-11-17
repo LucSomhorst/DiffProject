@@ -8,12 +8,14 @@ public partial class Hitzone : Area2D
 	private Color _hitColor = new Color(1f, 1f, 1f, 0.8f);
 	private bool _inHitZone = false;
 	private Block _enteredBlock;
+	ScoreManager scoreManager;
 
 	public override void _Ready()
 	{
 		_visual = GetNode<ColorRect>("ColorRect");
 		_visual.Color = _defaultColor;
-
+		scoreManager = GetNode<ScoreManager>("../ScoreManager");
+		
 		// Signalen verbinden (als blocks binnenkomen of weggaan)
 		BodyEntered += OnBlockEntered;
 		BodyExited += OnBlockExited;
@@ -59,6 +61,7 @@ public partial class Hitzone : Area2D
 			if (_inHitZone)
 			{
 				GD.Print("✅ Perfect hit!");
+				scoreManager.AddPoint();
 				_enteredBlock.QueueFree();
 			}
 			else
