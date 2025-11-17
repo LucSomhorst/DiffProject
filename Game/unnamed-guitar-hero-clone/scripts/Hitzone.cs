@@ -3,12 +3,12 @@ using System;
 
 public partial class Hitzone : Area2D
 {
+	[Export] public Key HitKey = Key.Space; // toets waarop gedrukt moet worden
 	private ColorRect _visual;
 	private Color _defaultColor = new Color(0.2f, 1f, 0.2f, 0.3f);
 	private Color _hitColor = new Color(1f, 1f, 1f, 0.8f);
-	private bool _inHitZone = false;
-	private Block _enteredBlock;
 	ScoreManager scoreManager;
+	private Block _enteredBlock = null;
 
 	public override void _Ready()
 	{
@@ -26,7 +26,6 @@ public partial class Hitzone : Area2D
 		if (body is Block block)
 		{
 			// markeer dat de block in de zone is
-			_inHitZone = true;
 			_enteredBlock = block;
 			
 			// Verander kleur voor feedback
@@ -37,10 +36,9 @@ public partial class Hitzone : Area2D
 
 	private void OnBlockExited(Node body)
 	{
-		if (body is Block block)
+		if (body == _enteredBlock)
 		{
 			// markeer dat de block eruit is
-			_inHitZone = false;
 			_enteredBlock = null;
 			
 			// Reset kleur
@@ -55,14 +53,15 @@ public partial class Hitzone : Area2D
 		if (!(@event is InputEventKey keyEvent)) return;
 		
 		// Check of de speler op de juiste toets drukt (bijv. spatie)
-		if (keyEvent.Pressed && keyEvent.Keycode == Key.Space)
+		if (keyEvent.Pressed && keyEvent.Keycode == HitKey)
 		{
-			
-			if (_inHitZone)
+			if (_enteredBlock != null)
 			{
 				GD.Print("✅ Perfect hit!");
 				scoreManager.AddPoint();
 				_enteredBlock.QueueFree();
+				_enteredBlock = null;
+				_visual.Color = _defaultColor;
 			}
 			else
 			{

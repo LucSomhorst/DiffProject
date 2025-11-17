@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://1un6hxfwmlya"]
+[gd_scene load_steps=6 format=3 uid="uid://1un6hxfwmlya"]
 
 [ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/Block.tscn" id="1_efpv0"]
-[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://scenes/Hitzone.tscn" id="2_hwg7k"]
+[ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://scenes/Hitzone1.tscn" id="2_vrkc4"]
+[ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://scenes/Hitzone2.tscn" id="3_hl6qr"]
+[ext_resource type="PackedScene" uid="uid://dimm7yj8lt50a" path="res://scenes/Hitzone3.tscn" id="4_xif6n"]
+[ext_resource type="PackedScene" uid="uid://mg5e5sdaiid1" path="res://scenes/Hitzone4.tscn" id="5_stvwv"]
 
 [node name="Test" type="Node2D"]
 
@@ -10,5 +13,14 @@
 [node name="Camera2D" type="Camera2D" parent="Node2D"]
 zoom = Vector2(4, 4)
 
-[node name="Hitzone" parent="." instance=ExtResource("2_hwg7k")]
-position = Vector2(0, 296)
+[node name="Hitzone1" parent="." instance=ExtResource("2_vrkc4")]
+position = Vector2(0, 210)
+
+[node name="Hitzone2" parent="." instance=ExtResource("3_hl6qr")]
+position = Vector2(0, 321)
+
+[node name="Hitzone3" parent="." instance=ExtResource("4_xif6n")]
+position = Vector2(1, 445)
+
+[node name="Hitzone4" parent="." instance=ExtResource("5_stvwv")]
+position = Vector2(2, 578)

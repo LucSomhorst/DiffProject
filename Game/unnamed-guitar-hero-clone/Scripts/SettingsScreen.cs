@@ -1,18 +1,71 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class SettingsScreen : MarginContainer
 {
+	private List<string> WindowOptions = ["windowed", "fullscreen", "borderless"];
+	private List<string> resolutionOptions = ["3840", "2560", "1920", "1600", "1536","1440", "1366", "1280"];
+	private List<string> uiscaleOptions = ["150", "100", "50"];
+
+	private int height;
+	private int width;
+	private string window;
+	private ConfigFile ConfigLocal = new();
+	private int musicVolume;
+	private int soundVolume;
 	[Signal]
 	public delegate void ReturnBtnEventHandler();
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		ConfigLocal.Load("res://settings.cfg");
+		SetSettingsUI();
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+	
+	private void SetSettingsUI()
+	{
+		var windowNode = (OptionButton)GetNode("%WindowMode");
+		var resolutionNode = (OptionButton)GetNode("%Resolution");
+		var uiScaleNode = (OptionButton)GetNode("%UIScale");
+		var screenshakeNode = (CheckButton)GetNode("%Screenshake");
+		var muteAllNode = (Button)GetNode("%MuteAll");
+		var musicVolumeLabel = (Label)GetNode("%MusicValueLabel");
+		var soundVolumeLabel = (Label)GetNode("%SoundValueLabel");
+		var musicVolumeSlider = (Slider)GetNode("%MusicSlider");
+		var soundVolumeSlider = (Slider)GetNode("%SoundSlider");
+		windowNode.Selected = WindowOptions.FindIndex(
+			x => x.Equals(ConfigLocal.GetValue("settings", "window", "Windowed").AsString()));
+		resolutionNode.Selected = resolutionOptions.FindIndex(
+				x => x.Equals(ConfigLocal.GetValue("settings", "reswidth", "1280").AsString()));
+		uiScaleNode.Selected = uiscaleOptions.FindIndex(
+			x => x.Equals(ConfigLocal.GetValue("settings", "uiscale", "100").AsString()));
+		screenshakeNode.ButtonPressed = ConfigLocal.GetValue("settings", "screenshake", false).AsBool();
+		muteAllNode.Text= ConfigLocal.GetValue("settings", "muteAll", "Mute all").ToString();
+		musicVolumeLabel.Text = ConfigLocal.GetValue("settings", "musicvolume", 0).ToString();
+		soundVolumeLabel.Text = ConfigLocal.GetValue("settings", "soundvolume", 0).ToString();
+		musicVolumeSlider.Value = ConfigLocal.GetValue("settings", "musicvolume", 0).AsInt32();
+		soundVolumeSlider.Value = ConfigLocal.GetValue("settings", "soundvolume", 0).AsInt32();
+	}
+
+	private void MusicSliderValueChanged(float variant)
+	{
+		musicVolume = Convert.ToInt32(variant); 
+		var musiclabel = (Label)GetNode("%MusicValueLabel");
+		musiclabel.Text = musicVolume.ToString();
+	}
+
+	private void SoundSliderValueChanged(float variant)
+	{
+		soundVolume = Convert.ToInt32(variant);
+		var soundlabel = (Label)GetNode("%SoundValueLabel");
+		soundlabel.Text = soundVolume.ToString();
 	}
 
 	private void OnReturnBtnPressed()
@@ -22,11 +75,139 @@ public partial class SettingsScreen : MarginContainer
 
 	private void SaveChangesBtnPressed()
 	{
-		
+		ConfigLocal.Save("res://settings.cfg");
 	}
 
 	private void RevertToStandardBtnPressed()
 	{
 		
+	}
+
+	private void SettingChanged(Variant variant, string settingChanged)
+	{
+		GD.Print(settingChanged + variant);
+		switch (settingChanged)
+		{
+			case "resolution":
+				switch (variant.ToString())
+				{
+					case "0" :
+						height = 3840;
+						width = 2160;
+						ConfigLocal.SetValue("settings", "reswidth", "3840");
+						ConfigLocal.SetValue("settings", "resheight", "2160");
+						break;
+					case "1" :
+						height = 2560;
+						width = 1440;
+						ConfigLocal.SetValue("settings", "reswidth", "2560");
+						ConfigLocal.SetValue("settings", "resheight", "1440");
+						break;
+					case "2" :
+						height = 1920;
+						width = 1080;
+						ConfigLocal.SetValue("settings", "reswidth", "1920");
+						ConfigLocal.SetValue("settings", "resheight", "1080");
+						break;
+					case "3" :
+						height = 1600;
+						width = 900;
+						ConfigLocal.SetValue("settings", "reswidth", "1600");
+						ConfigLocal.SetValue("settings", "resheight", "900");
+						break;
+					case "4" :
+						height = 1536;
+						width = 864;
+						ConfigLocal.SetValue("settings", "reswidth", "1536");
+						ConfigLocal.SetValue("settings", "resheight", "864");
+						break;
+					case "5" :
+						height = 1440;
+						width = 900;
+						ConfigLocal.SetValue("settings", "reswidth", "1440");
+						ConfigLocal.SetValue("settings", "resheight", "900");
+						break;
+					case "6" :
+						height = 1366;
+						width = 768;
+						ConfigLocal.SetValue("settings", "reswidth", "1366");
+						ConfigLocal.SetValue("settings", "resheight", "768");	
+						break;
+					case "7" :
+						height = 1280;
+						width = 720;
+						ConfigLocal.SetValue("settings", "reswidth", "1280");
+						ConfigLocal.SetValue("settings", "resheight", "720");
+						break;
+				}
+
+				GetWindow().Size = new Vector2I(height, width);
+				break;
+			case "window" :
+				switch (variant.ToString())
+				{
+					case "0":
+						DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+						ConfigLocal.SetValue("settings", "window", WindowOptions[variant.AsInt32()]);
+						break;
+					case "1":
+						DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+						ConfigLocal.SetValue("settings", "window", WindowOptions[variant.AsInt32()]);
+						break;
+					case "2":
+						DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+						ConfigLocal.SetValue("settings", "window", WindowOptions[variant.AsInt32()]);
+						break;
+				}
+				break;
+			case "uiscale":
+				switch (variant.ToString())
+				{
+					case "0":
+						ConfigLocal.SetValue("settings", "uiscale", uiscaleOptions[variant.AsInt32()]);
+						break;
+					case "1":
+						ConfigLocal.SetValue("settings", "uiscale", uiscaleOptions[variant.AsInt32()]);
+						break;
+					case "2":
+						ConfigLocal.SetValue("settings", "uiscale", uiscaleOptions[variant.AsInt32()]);
+						break;
+				}
+				break;
+			case "screenshake":
+				switch (variant.ToString())
+				{
+					case "true":
+					ConfigLocal.SetValue("settings", "screenshake", "true");
+						break;
+					case "false":
+					ConfigLocal.SetValue("settings", "screenshake", "false");
+						break;
+				}
+				break;
+			case "muteall" :
+				switch (variant.ToString())
+				{
+					case "true":
+						ConfigLocal.SetValue("settings", "muteall", "true");
+						break;
+					case "false":
+						ConfigLocal.SetValue("settings", "muteall", "false");
+						break;
+				}
+				break;
+			case "musicvolume" :
+				if ((bool)variant)
+				{
+					ConfigLocal.SetValue("settings", "musicvolume", musicVolume);
+				}
+				break;
+			case "soundvolume" :
+				if ((bool)variant)
+				{
+					ConfigLocal.SetValue("settings", "soundvolume", soundVolume);
+				}
+				break;
+		}
 	}
 }

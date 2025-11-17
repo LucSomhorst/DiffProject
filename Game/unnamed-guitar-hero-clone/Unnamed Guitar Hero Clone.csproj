@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>UnnamedGuitarHeroClone</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="settings.cfg" />
+  </ItemGroup>
 </Project>
