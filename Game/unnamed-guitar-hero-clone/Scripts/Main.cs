@@ -16,7 +16,7 @@ public partial class Main : Node
 	{
 	}
 
-	private void StartGame()
+	public void StartGame()
 	{
 		var menuNode = (PanelContainer)GetNode("MenusContainer");
 		menuNode.Hide();
@@ -26,11 +26,6 @@ public partial class Main : Node
 	private void Exit()
 	{
 		GetTree().Quit();
-	}
-
-	public void StartGame()
-	{
-		
 	}
 
 	public void EndGame()
