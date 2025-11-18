@@ -3,7 +3,7 @@ using Godot;
 
 public partial class KeybindLine : HBoxContainer
 {
-	private SettingsScreen parentNode;
+	private UnnamedGuitarHeroClone.Scripts.SettingsScreen parentNode;
 	private string key;
 	private string value;
 	// Called when the node enters the scene tree for the first time.
@@ -17,7 +17,7 @@ public partial class KeybindLine : HBoxContainer
 		
 	}
 
-	public void Constructor(string keyBindName, string keyBindValue, SettingsScreen parent)
+	public void Constructor(string keyBindName, string keyBindValue, UnnamedGuitarHeroClone.Scripts.SettingsScreen parent)
 	{
 		var label = (Label)GetNode("KeybindNameLabel");
 		label.Text = keyBindName;
