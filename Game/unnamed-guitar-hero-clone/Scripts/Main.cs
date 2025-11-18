@@ -26,6 +26,7 @@ public partial class Main : Node
 		}
 		var gameNode = (GameContainer)GetNode("GameContainer");
 		//start game function
+		menuNode.Hide();
 		gameNode.Show();
 	}
 	private void Exit()

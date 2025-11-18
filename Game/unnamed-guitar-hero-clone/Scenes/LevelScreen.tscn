@@ -4,13 +4,13 @@
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_1exrr"]
 [ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/Block.tscn" id="2_x353h"]
 [ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://Scenes/Hitzone.tscn" id="4_cji5a"]
-[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://Scenes/ScoreManager.cs" id="5_cji5a"]
+[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://Scripts/ScoreManager.cs" id="5_cji5a"]
 
 [sub_resource type="Theme" id="Theme_fvtre"]
 
 [sub_resource type="Curve2D" id="Curve2D_mn8xq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 969, 229)
+"points": PackedVector2Array(0, 0, 0, 0, 628, 221)
 }
 point_count = 1
 
@@ -44,7 +44,7 @@ offset_top = -0.0470009
 offset_right = -0.696045
 offset_bottom = -12.658
 theme_override_font_sizes/font_size = 100
-text = "Level 1"
+text = "Default"
 
 [node name="BlockTimer" type="Timer" parent="."]
 
@@ -52,11 +52,11 @@ text = "Level 1"
 curve = SubResource("Curve2D_mn8xq")
 
 [node name="BlockSpawnLocation" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(969, 229)
-rotation = 1.83705
+position = Vector2(628, 221)
+rotation = 1.13583
 
 [node name="Hitzone" parent="." instance=ExtResource("4_cji5a")]
-position = Vector2(1003, 920)
+position = Vector2(638, 667)
 scale = Vector2(10, 10)
 
 [node name="StartTimer" type="Timer" parent="."]
@@ -78,5 +78,13 @@ offset_bottom = 10.84
 theme_override_font_sizes/font_size = 80
 text = "Test"
 
+[node name="EndGame" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 50
+text = "Levels"
+
 [connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
+[connection signal="pressed" from="EndGame" to="." method="StopGame"]
