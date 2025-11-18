@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using UnnamedGuitarHeroClone.Scripts;
 
 public partial class LevelSelect : Control
 {
@@ -39,11 +40,9 @@ public partial class LevelSelect : Control
 	{
 		EmitSignalExitBtn();
 	}
-	private void MenuBtnClicked()
+	private void OnMenuBtnClicked()
 	{
-		var yes = GetParent();
-		var main = yes.GetParent();
-		
-		main.EndGame();
+		var parent = (GameContainer)GetParent();
+		parent.EndGame();
 	}
 }

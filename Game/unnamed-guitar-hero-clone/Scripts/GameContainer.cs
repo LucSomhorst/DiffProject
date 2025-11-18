@@ -1,12 +1,12 @@
 using Godot;
-using System;
+
+namespace UnnamedGuitarHeroClone.Scripts;
 
 public partial class GameContainer : PanelContainer
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		OpenGameScreen();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,10 +60,21 @@ public partial class GameContainer : PanelContainer
 		level.EndGame += OpenGameScreen;
 	}
 	
-	private void ExitGame()
+	public void ExitGame()
 	{
 		GetParent().GetTree().Quit();
 		GD.Print("Exit");
+	}
+
+	public void StartGame()
+	{
+		OpenGameScreen();
+	}
+	
+	public void EndGame()
+	{
+		var main = (Main)GetParent();
+		main.EndGame();
 	}
 
 	

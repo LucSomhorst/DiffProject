@@ -1,7 +1,8 @@
-using Godot;
 using System;
 using System.Collections.Generic;
-using UnnamedGuitarHeroClone.Scripts;
+using Godot;
+
+namespace UnnamedGuitarHeroClone.Scripts;
 
 public partial class SettingsScreen : MarginContainer
 {
@@ -63,7 +64,7 @@ public partial class SettingsScreen : MarginContainer
 		windowNode.Selected = WindowOptions.FindIndex(
 			x => x.Equals(ConfigLocal.GetValue("settings", "window", "Windowed").AsString()));
 		resolutionNode.Selected = resolutionOptions.FindIndex(
-				x => x.Equals(ConfigLocal.GetValue("settings", "reswidth", "1280").AsString()));
+			x => x.Equals(ConfigLocal.GetValue("settings", "reswidth", "1280").AsString()));
 		uiScaleNode.Selected = uiscaleOptions.FindIndex(
 			x => x.Equals(ConfigLocal.GetValue("settings", "uiscale", "100").AsString()));
 		screenshakeNode.ButtonPressed = ConfigLocal.GetValue("settings", "screenshake", false).AsBool();
@@ -198,10 +199,10 @@ public partial class SettingsScreen : MarginContainer
 				switch (variant.ToString())
 				{
 					case "true":
-					ConfigLocal.SetValue("settings", "screenshake", "true");
+						ConfigLocal.SetValue("settings", "screenshake", "true");
 						break;
 					case "false":
-					ConfigLocal.SetValue("settings", "screenshake", "false");
+						ConfigLocal.SetValue("settings", "screenshake", "false");
 						break;
 				}
 				break;
