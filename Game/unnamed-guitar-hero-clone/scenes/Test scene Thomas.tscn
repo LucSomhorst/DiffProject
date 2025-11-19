@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://scenes/Hitzone2.tscn" id="3_hl6qr"]
 [ext_resource type="PackedScene" uid="uid://dimm7yj8lt50a" path="res://scenes/Hitzone3.tscn" id="4_xif6n"]
 [ext_resource type="PackedScene" uid="uid://mg5e5sdaiid1" path="res://scenes/Hitzone4.tscn" id="5_stvwv"]
-[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scenes/ScoreManager.cs" id="6_hl6qr"]
+[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="6_hl6qr"]
 
 [node name="Test" type="Node2D"]
 

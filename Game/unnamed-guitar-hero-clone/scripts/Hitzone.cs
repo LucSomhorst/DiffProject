@@ -3,7 +3,7 @@ using System;
 
 public partial class Hitzone : Area2D
 {
-	[Export] public String HitKey = Space; // toets waarop gedrukt moet worden
+	[Export] public String HitKey = "Space"; // toets waarop gedrukt moet worden
 	private Key _key;
 	private ColorRect _visual;
 	private Color _defaultColor = new Color(0.2f, 1f, 0.2f, 0.3f);
@@ -53,14 +53,14 @@ public partial class Hitzone : Area2D
 		// Alleen reageren als het blok nog niet geraakt is
 		if (!(@event is InputEventKey keyEvent)) return;
 		
-		if (Enum.TryParse<Key>(value, out Key parsedKey))
+		if (Enum.TryParse<Key>(HitKey, out Key parsedKey))
 		{
 			_key = parsedKey;
 		}
 		else
 		{
-			GD.PrintErr($"Invalid key in config: {value}. Using default A.");
-			_key = Key.A;
+			GD.PrintErr($"Invalid key in config: {HitKey}. Using default Space.");
+			_key = Key.Space;
 		}
 		
 		// Check of de speler op de juiste toets drukt (bijv. spatie)
