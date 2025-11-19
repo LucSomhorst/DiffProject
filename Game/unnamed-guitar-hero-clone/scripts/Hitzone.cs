@@ -3,17 +3,20 @@ using System;
 
 public partial class Hitzone : Area2D
 {
-	[Export] public Key HitKey = Key.Space; // toets waarop gedrukt moet worden
+	[Export] public String HitKey = Space; // toets waarop gedrukt moet worden
+	private Key _key;
 	private ColorRect _visual;
 	private Color _defaultColor = new Color(0.2f, 1f, 0.2f, 0.3f);
 	private Color _hitColor = new Color(1f, 1f, 1f, 0.8f);
+	ScoreManager scoreManager;
 	private Block _enteredBlock = null;
 
 	public override void _Ready()
 	{
 		_visual = GetNode<ColorRect>("ColorRect");
 		_visual.Color = _defaultColor;
-
+		scoreManager = GetNode<ScoreManager>("../ScoreManager");
+		
 		// Signalen verbinden (als blocks binnenkomen of weggaan)
 		BodyEntered += OnBlockEntered;
 		BodyExited += OnBlockExited;
@@ -50,12 +53,23 @@ public partial class Hitzone : Area2D
 		// Alleen reageren als het blok nog niet geraakt is
 		if (!(@event is InputEventKey keyEvent)) return;
 		
+		if (Enum.TryParse<Key>(value, out Key parsedKey))
+		{
+			_key = parsedKey;
+		}
+		else
+		{
+			GD.PrintErr($"Invalid key in config: {value}. Using default A.");
+			_key = Key.A;
+		}
+		
 		// Check of de speler op de juiste toets drukt (bijv. spatie)
-		if (keyEvent.Pressed && keyEvent.Keycode == HitKey)
+		if (keyEvent.Pressed && keyEvent.Keycode == _key)
 		{
 			if (_enteredBlock != null)
 			{
 				GD.Print("✅ Perfect hit!");
+				scoreManager.AddPoint();
 				_enteredBlock.QueueFree();
 				_enteredBlock = null;
 				_visual.Color = _defaultColor;

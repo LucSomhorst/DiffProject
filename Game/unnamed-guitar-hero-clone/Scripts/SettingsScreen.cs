@@ -1,6 +1,8 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
+
+namespace UnnamedGuitarHeroClone.Scripts;
 
 public partial class SettingsScreen : MarginContainer
 {
@@ -21,12 +23,31 @@ public partial class SettingsScreen : MarginContainer
 	{
 		ConfigLocal.Load("res://settings.cfg");
 		SetSettingsUI();
-		
+		SetKeybindsUI();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+
+	private void SetKeybindsUI()
+	{
+		var keybindsContainer = (VBoxContainer)GetNode("%KeybindVBox");
+		var keybinds = ConfigLocal.GetSectionKeys("Keybinds");
+		foreach (var keybind in keybinds)
+		{
+			var packedScene = ResourceLoader.Load<PackedScene>($"res://Scenes/KeybindLine.tscn");
+			var NodeScene = (KeybindLine)packedScene.Instantiate();
+			var value = ConfigLocal.GetValue("Keybinds", keybind).ToString();
+			NodeScene.Constructor(keybind, value, this);
+			keybindsContainer.AddChild(NodeScene);
+		}
+	}
+
+	public void KeyBindChanged(string key, string value)
+	{
+		ConfigLocal.SetValue("Keybinds",key,value);
 	}
 	
 	private void SetSettingsUI()
@@ -43,7 +64,7 @@ public partial class SettingsScreen : MarginContainer
 		windowNode.Selected = WindowOptions.FindIndex(
 			x => x.Equals(ConfigLocal.GetValue("settings", "window", "Windowed").AsString()));
 		resolutionNode.Selected = resolutionOptions.FindIndex(
-				x => x.Equals(ConfigLocal.GetValue("settings", "reswidth", "1280").AsString()));
+			x => x.Equals(ConfigLocal.GetValue("settings", "reswidth", "1280").AsString()));
 		uiScaleNode.Selected = uiscaleOptions.FindIndex(
 			x => x.Equals(ConfigLocal.GetValue("settings", "uiscale", "100").AsString()));
 		screenshakeNode.ButtonPressed = ConfigLocal.GetValue("settings", "screenshake", false).AsBool();
@@ -178,10 +199,10 @@ public partial class SettingsScreen : MarginContainer
 				switch (variant.ToString())
 				{
 					case "true":
-					ConfigLocal.SetValue("settings", "screenshake", "true");
+						ConfigLocal.SetValue("settings", "screenshake", "true");
 						break;
 					case "false":
-					ConfigLocal.SetValue("settings", "screenshake", "false");
+						ConfigLocal.SetValue("settings", "screenshake", "false");
 						break;
 				}
 				break;

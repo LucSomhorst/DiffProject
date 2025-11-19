@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://Scripts/ScoreboardScreen.cs" id="1_yx26b"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_qwao4"]
-[ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Scenes/InnerMenuTheme.tres" id="3_agcct"]
+[ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Themes/InnerMenuTheme.tres" id="3_agcct"]
 
 [node name="ScoreboardScreen" type="MarginContainer"]
 anchors_preset = 15
