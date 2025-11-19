@@ -24,8 +24,9 @@ public partial class Main : Node
 		{
 			child.QueueFree();
 		}
-		var gameNode = (GameContainer)GetNode("GameContainer");
-		//start game function
+		var gameNode = (GameContainer)GetNode("GameContainer"); 
+		gameNode.StartGame();
+		menuNode.Hide();
 		gameNode.Show();
 		gameNode.StartGame();
 	}

@@ -6,20 +6,26 @@ public partial class LevelScreen : Control
 {
 	[Export]
 	public PackedScene BlockScene { get; set; }
+	[Signal]
+	public delegate void EndGameEventHandler();
+	public string LevelFile { get; set; }
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var levelFile= "res://Levels/Level 1.txt";
-		List<string> values = LoadFile(levelFile);
+		
+	}
+	
+	public void Contructor()
+	{
+		List<string> values = LoadFile(LevelFile);
 		var label = GetNode<Label>("LevelName");
 		label.Text = values[0];
 		var timer = GetNode<Timer>("BlockTimer");
-		timer.WaitTime = Convert.ToInt32(values[1]);
+		timer.WaitTime = Convert.ToSingle(values[1]);
 		
 		NewGame();
 	}
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
@@ -39,11 +45,12 @@ public partial class LevelScreen : Control
 
 		return values;
 	}
-	public void GameOver()
+	public void StopGame()
 	{
 		GetNode<Timer>("BlockTimer").Stop();
+		EmitSignalEndGame();
 	}
-
+	
 	public void NewGame()
 	{
 
