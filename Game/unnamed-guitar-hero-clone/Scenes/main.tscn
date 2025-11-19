@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c36rbmwrgkxhp"]
 
-[ext_resource type="Script" uid="uid://j6ic7e6gyp8r" path="res://Scripts/Main.cs" id="1_bo1nx"]
-[ext_resource type="Script" uid="uid://sc4hmbkohm3w" path="res://Scripts/GameContainer.cs" id="2_8gbba"]
-[ext_resource type="Script" uid="uid://d20t25ql1jpbc" path="res://Scripts/MenusContainer.cs" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://j6ic7e6gyp8r" path="res://scripts/Main.cs" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://sc4hmbkohm3w" path="res://scripts/GameContainer.cs" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://d20t25ql1jpbc" path="res://scripts/MenusContainer.cs" id="2_bo1nx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bo1nx"]
 blend_mode = 1

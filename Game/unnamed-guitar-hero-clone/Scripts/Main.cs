@@ -28,6 +28,7 @@ public partial class Main : Node
 		gameNode.StartGame();
 		menuNode.Hide();
 		gameNode.Show();
+		gameNode.StartGame();
 	}
 	private void Exit()
 	{

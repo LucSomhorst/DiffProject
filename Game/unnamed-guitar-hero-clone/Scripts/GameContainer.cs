@@ -14,6 +14,7 @@ public partial class GameContainer : PanelContainer
 	{
 		
 	}
+	
 	private Node ChangeScene(string scene)
 	{
 		var children = GetChildren();

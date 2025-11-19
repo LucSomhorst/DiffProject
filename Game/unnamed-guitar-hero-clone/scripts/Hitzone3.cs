@@ -5,7 +5,8 @@ public partial class Hitzone3 : Hitzone
 {
 	public override void _Ready()
 	{
-		HitKey = Key.D;
+		ConfigLocal.Load("res://settings.cfg");
+		HitKey = ConfigLocal.GetValue("Keybinds", "middleRightZone").ToString();
 		base._Ready();
 	}
 }
