@@ -8,7 +8,6 @@ public partial class LevelScreen : Control
 	public PackedScene BlockScene { get; set; }
 	[Signal]
 	public delegate void EndGameEventHandler();
-	public string LevelFile { get; set; }
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -16,9 +15,10 @@ public partial class LevelScreen : Control
 		
 	}
 	
-	public void Contructor()
+	public void Contructor(string levelPath)
 	{
-		List<string> values = LoadFile(LevelFile);
+		GD.Print(levelPath);
+		List<string> values = LoadFile(levelPath);
 		var label = GetNode<Label>("LevelName");
 		label.Text = values[0];
 		var timer = GetNode<Timer>("BlockTimer");
@@ -53,7 +53,6 @@ public partial class LevelScreen : Control
 	
 	public void NewGame()
 	{
-
 		GetNode<Timer>("StartTimer").Start();
 	}
 	private void OnStartTimerTimeout()

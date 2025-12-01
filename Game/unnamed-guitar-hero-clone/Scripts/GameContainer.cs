@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace UnnamedGuitarHeroClone.Scripts;
@@ -12,7 +13,6 @@ public partial class GameContainer : PanelContainer
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
 	}
 	
 	private Node ChangeScene(string scene)
@@ -30,34 +30,17 @@ public partial class GameContainer : PanelContainer
 	
 	public void OpenGameScreen()
 	{
-		var levelScreen = (LevelSelect)ChangeScene("LevelSelect");
-		levelScreen.Level1 += OpenLevel1;
-		levelScreen.Level2 += OpenLevel2;
-		levelScreen.Level3 += OpenLevel3;
-		levelScreen.ExitBtn += ExitGame; 
+		var levelSelect = (LevelSelect)ChangeScene("LevelSelect");
+		levelSelect.StartLevel += OpenLevel;
+		levelSelect.ExitBtn += ExitGame; 
 	}
-	
-	private void OpenLevel1()
+
+	private void OpenLevel(string path)
 	{
+		GD.Print("level opened");
 		var level = (LevelScreen)ChangeScene("LevelScreen");
-		level.LevelFile = "res://Levels/Level 1.txt";
-		level.Contructor();
-		level.EndGame += OpenGameScreen;
-	}
-	
-	private void OpenLevel2()
-	{
-		var level = (LevelScreen)ChangeScene("LevelScreen");
-		level.LevelFile = "res://Levels/Level 2.txt";
-		level.Contructor();
-		level.EndGame += OpenGameScreen;
-	}
-	
-	private void OpenLevel3()
-	{
-		var level = (LevelScreen)ChangeScene("LevelScreen");
-		level.LevelFile = "res://Levels/Level 3.txt";
-		level.Contructor();
+		GD.Print(path);
+		level.Contructor(path);
 		level.EndGame += OpenGameScreen;
 	}
 	
