@@ -17,6 +17,7 @@ public partial class LevelScreen : Control
 	
 	public void Contructor(string levelPath)
 	{
+		GD.Print(levelPath);
 		List<string> values = LoadFile(levelPath);
 		var label = GetNode<Label>("LevelName");
 		label.Text = values[0];
