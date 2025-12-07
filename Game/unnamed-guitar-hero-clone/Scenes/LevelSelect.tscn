@@ -14,85 +14,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fo23m")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.003
-offset_bottom = -0.160034
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
 theme = SubResource("Theme_1qomi")
 theme_override_styles/panel = ExtResource("2_1cx81")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.262
-anchor_top = 0.003
-anchor_right = 0.702
-anchor_bottom = 0.193
-offset_left = -0.360046
-offset_top = -0.16
-offset_right = 0.439941
-offset_bottom = 0.0399933
-theme_override_font_sizes/font_size = 100
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Level Select"
+horizontal_alignment = 1
 
-[node name="Level1" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.032
-anchor_top = 0.296
-anchor_right = 0.169
-anchor_bottom = 0.403
-offset_left = 0.0399971
-offset_top = -0.119995
-offset_right = -0.320023
-offset_bottom = -0.160034
-theme_override_font_sizes/font_size = 50
-text = "Level 1"
+[node name="LevelBox" type="HFlowContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
-[node name="Level2" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.213
-anchor_top = 0.296
-anchor_right = 0.35
-anchor_bottom = 0.403
-offset_left = 0.359985
-offset_top = -0.119995
-offset_right = -3.05176e-05
-offset_bottom = -0.160034
-theme_override_font_sizes/font_size = 50
-text = "Level 2"
-
-[node name="Level3" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.386
-anchor_top = 0.297
-anchor_right = 0.523
-anchor_bottom = 0.404
-offset_left = -0.0800171
-offset_top = 0.159988
-offset_right = -0.440002
-offset_bottom = 0.119995
-theme_override_font_sizes/font_size = 50
-text = "Level 3"
-
-[node name="ReturnBtn" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="MenuBtn" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="MenuBtn" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
 theme_override_font_sizes/font_size = 50
 text = "Menu"
 
-[connection signal="pressed" from="Level1" to="." method="OnLevel1Click"]
-[connection signal="pressed" from="Level2" to="." method="OnLevel2Click"]
-[connection signal="pressed" from="Level3" to="." method="OnLevel3Click"]
-[connection signal="pressed" from="ReturnBtn" to="." method="OnExitBtnClicked"]
-[connection signal="pressed" from="MenuBtn" to="." method="OnMenuBtnClicked"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MenuBtn" to="." method="OnMenuBtnClicked"]

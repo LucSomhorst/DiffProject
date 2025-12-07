@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://v30pdr6y118y"]
+[gd_scene load_steps=11 format=3 uid="uid://v30pdr6y118y"]
 
 [ext_resource type="Script" uid="uid://2agfusotajkk" path="res://scripts/LevelScreen.cs" id="1_00ksh"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_1exrr"]
-[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/Block.tscn" id="2_x353h"]
-[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://Scenes/Hitzone.tscn" id="4_cji5a"]
-[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://Scripts/ScoreManager.cs" id="5_cji5a"]
+[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/Block.tscn" id="2_x353h"]
+[ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://scenes/Hitzone1.tscn" id="4_84cs6"]
+[ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://scenes/Hitzone2.tscn" id="5_6dn54"]
+[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="5_cji5a"]
+[ext_resource type="PackedScene" uid="uid://dimm7yj8lt50a" path="res://scenes/Hitzone3.tscn" id="6_75u8g"]
+[ext_resource type="PackedScene" uid="uid://mg5e5sdaiid1" path="res://scenes/Hitzone4.tscn" id="7_oij81"]
 
 [sub_resource type="Theme" id="Theme_fvtre"]
 
@@ -18,8 +21,8 @@ point_count = 1
 layout_mode = 3
 anchor_right = 0.819
 anchor_bottom = 1.651
-offset_right = -0.480103
-offset_bottom = -0.0800781
+offset_right = 233.68
+offset_bottom = -438.72
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00ksh")
@@ -27,22 +30,22 @@ BlockScene = ExtResource("2_x353h")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 1936.0
-offset_bottom = 1073.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1394.0
+offset_bottom = 751.0
 theme = SubResource("Theme_fvtre")
 theme_override_styles/panel = ExtResource("2_1exrr")
 
 [node name="LevelName" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.505
-anchor_top = 0.009
-anchor_right = 0.718
-anchor_bottom = 0.126
-offset_left = 0.140076
-offset_top = -0.0470009
-offset_right = -0.696045
-offset_bottom = -12.658
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -178.0
+offset_right = 178.0
+offset_bottom = 137.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 text = "Default"
 
@@ -52,12 +55,36 @@ text = "Default"
 curve = SubResource("Curve2D_mn8xq")
 
 [node name="BlockSpawnLocation" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(628, 221)
+position = Vector2(211, 225)
 rotation = 1.13583
 
-[node name="Hitzone" parent="." instance=ExtResource("4_cji5a")]
-position = Vector2(638, 667)
-scale = Vector2(10, 10)
+[node name="BlockSpawnLocation2" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(497, 225)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation3" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(783, 225)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation4" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(1069, 225)
+rotation = -2.8757
+
+[node name="Hitzone1" parent="." instance=ExtResource("4_84cs6")]
+position = Vector2(211, 666)
+scale = Vector2(2.5, 2.5)
+
+[node name="Hitzone2" parent="." instance=ExtResource("5_6dn54")]
+position = Vector2(497, 666)
+scale = Vector2(2.5, 2.5)
+
+[node name="Hitzone3" parent="." instance=ExtResource("6_75u8g")]
+position = Vector2(783, 666)
+scale = Vector2(2.5, 2.5)
+
+[node name="Hitzone4" parent="." instance=ExtResource("7_oij81")]
+position = Vector2(1069, 666)
+scale = Vector2(2.5, 2.5)
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
@@ -66,17 +93,18 @@ one_shot = true
 script = ExtResource("5_cji5a")
 
 [node name="Score" type="Label" parent="ScoreManager"]
-anchors_preset = -1
-anchor_left = 0.426
-anchor_top = 0.143
-anchor_right = 0.571
-anchor_bottom = 0.277
-offset_left = -0.920044
-offset_top = -0.440002
-offset_right = 2.67993
-offset_bottom = 10.84
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -81.0
+offset_top = 103.0
+offset_right = 81.0
+offset_bottom = 213.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 80
 text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EndGame" type="Button" parent="."]
 layout_mode = 0

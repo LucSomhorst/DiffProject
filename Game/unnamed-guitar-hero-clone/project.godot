@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Unnamed Guitar Hero Clone"
+config/name="Beat Rush"
 run/main_scene="uid://c36rbmwrgkxhp"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/borderless=true
 
 [dotnet]
 
