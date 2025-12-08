@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ae57038-58a8-4a7b-902e-571a684022de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone3.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone3.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone4.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone4.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
-    </list>
+    <list default="true" id="6ae57038-58a8-4a7b-902e-571a684022de" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,11 +14,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/scripts/Hitzone.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/BlockBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/Hitzone.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/scripts/Hitzone1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/scripts/Hitzone2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/scripts/Hitzone3.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/scripts/Hitzone4.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/Hitzone2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/Hitzone3.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/Hitzone4.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/HoldBlock.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/LevelScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/TapBlock.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -44,7 +40,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;25-hitzone-aanpassen-met-keybindings&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;20-blokken-met-mechanics&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -117,6 +113,8 @@
       <workItem from="1763387777197" duration="620000" />
       <workItem from="1763547607271" duration="823000" />
       <workItem from="1763555080711" duration="535000" />
+      <workItem from="1765149019898" duration="1319000" />
+      <workItem from="1765150438880" duration="1484000" />
     </task>
     <servers />
   </component>

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://v30pdr6y118y"]
+[gd_scene load_steps=12 format=3 uid="uid://v30pdr6y118y"]
 
 [ext_resource type="Script" uid="uid://2agfusotajkk" path="res://scripts/LevelScreen.cs" id="1_00ksh"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_1exrr"]
-[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/Block.tscn" id="2_x353h"]
+[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/TapBlock.tscn" id="2_x353h"]
+[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_6dn54"]
 [ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://scenes/Hitzone1.tscn" id="4_84cs6"]
 [ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://scenes/Hitzone2.tscn" id="5_6dn54"]
 [ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="5_cji5a"]
@@ -27,6 +28,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00ksh")
 BlockScene = ExtResource("2_x353h")
+TapBlockScene = ExtResource("2_x353h")
+HoldBlockScene = ExtResource("3_6dn54")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 0
@@ -54,7 +57,7 @@ text = "Default"
 [node name="BlockSpawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_mn8xq")
 
-[node name="BlockSpawnLocation" type="PathFollow2D" parent="BlockSpawn"]
+[node name="BlockSpawnLocation1" type="PathFollow2D" parent="BlockSpawn"]
 position = Vector2(211, 225)
 rotation = 1.13583
 
@@ -71,19 +74,19 @@ position = Vector2(1069, 225)
 rotation = -2.8757
 
 [node name="Hitzone1" parent="." instance=ExtResource("4_84cs6")]
-position = Vector2(211, 666)
+position = Vector2(211, 606)
 scale = Vector2(2.5, 2.5)
 
 [node name="Hitzone2" parent="." instance=ExtResource("5_6dn54")]
-position = Vector2(497, 666)
+position = Vector2(497, 606)
 scale = Vector2(2.5, 2.5)
 
 [node name="Hitzone3" parent="." instance=ExtResource("6_75u8g")]
-position = Vector2(783, 666)
+position = Vector2(783, 606)
 scale = Vector2(2.5, 2.5)
 
 [node name="Hitzone4" parent="." instance=ExtResource("7_oij81")]
-position = Vector2(1069, 666)
+position = Vector2(1069, 606)
 scale = Vector2(2.5, 2.5)
 
 [node name="StartTimer" type="Timer" parent="."]
