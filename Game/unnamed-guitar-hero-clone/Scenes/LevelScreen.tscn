@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://v30pdr6y118y"]
+[gd_scene load_steps=11 format=3 uid="uid://v30pdr6y118y"]
 
 [ext_resource type="Script" uid="uid://2agfusotajkk" path="res://scripts/LevelScreen.cs" id="1_00ksh"]
-[ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_1exrr"]
 [ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/TapBlock.tscn" id="2_x353h"]
-[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_6dn54"]
+[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_84cs6"]
 [ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://scenes/Hitzone1.tscn" id="4_84cs6"]
 [ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://scenes/Hitzone2.tscn" id="5_6dn54"]
 [ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="5_cji5a"]
@@ -27,18 +26,16 @@ offset_bottom = -438.72
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00ksh")
-BlockScene = ExtResource("2_x353h")
 TapBlockScene = ExtResource("2_x353h")
-HoldBlockScene = ExtResource("3_6dn54")
+HoldBlockScene = ExtResource("3_84cs6")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 1394.0
-offset_bottom = 751.0
+offset_right = 1292.0
+offset_bottom = 726.0
 theme = SubResource("Theme_fvtre")
-theme_override_styles/panel = ExtResource("2_1exrr")
 
 [node name="LevelName" type="Label" parent="."]
 layout_mode = 1

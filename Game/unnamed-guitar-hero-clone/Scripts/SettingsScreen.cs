@@ -31,6 +31,7 @@ public partial class SettingsScreen : MarginContainer
 	{
 	}
 
+	// Gets all editable keybinds and sets their value according to saved keybinds
 	private void SetKeybindsUI()
 	{
 		var keybindsContainer = (VBoxContainer)GetNode("%KeybindVBox");
@@ -50,6 +51,7 @@ public partial class SettingsScreen : MarginContainer
 		ConfigLocal.SetValue("Keybinds",key,value);
 	}
 	
+	// Gets all setting option nodes and sets their value according to saved settings
 	private void SetSettingsUI()
 	{
 		var windowNode = (OptionButton)GetNode("%WindowMode");
@@ -103,7 +105,8 @@ public partial class SettingsScreen : MarginContainer
 	{
 		
 	}
-
+	
+	// Is called every time a setting is changed, the values given are the new value and the name of the setting that has a changed value
 	private void SettingChanged(Variant variant, string settingChanged)
 	{
 		GD.Print(settingChanged + variant);

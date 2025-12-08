@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cvxkvysl21efq"]
 
-[ext_resource type="Script" uid="uid://c02oy04pn003a" path="res://Scripts/LevelButton.cs" id="1_yoeyv"]
+[ext_resource type="Script" uid="uid://c02oy04pn003a" path="res://scripts/LevelButton.cs" id="1_yoeyv"]
 
 [node name="Control" type="MarginContainer"]
 anchors_preset = 15

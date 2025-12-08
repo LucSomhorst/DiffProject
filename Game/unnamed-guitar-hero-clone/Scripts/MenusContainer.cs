@@ -16,6 +16,7 @@ public partial class MenusContainer : PanelContainer
 		
 	}
 	
+	// Removes all children of the MenuContainer and adds the new scene by the given string path
 	private Node ChangeScene(string scene)
 	{
 		var children = GetChildren();
