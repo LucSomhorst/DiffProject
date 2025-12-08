@@ -1,6 +1,6 @@
 using Godot;
 
-
+namespace UnnamedGuitarHeroClone.Scripts;
 
 public partial class MenuScreen : Control
 {
