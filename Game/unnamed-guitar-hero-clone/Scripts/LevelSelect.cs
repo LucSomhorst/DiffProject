@@ -78,6 +78,7 @@ public partial class LevelSelect : Control
 
 					file.StoreLine("level " + levelNumber);
 					file.StoreLine(rng.Next(1, 5).ToString());
+					file.StoreLine("dif1");
 				}
 			}
 
