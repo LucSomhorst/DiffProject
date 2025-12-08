@@ -81,8 +81,8 @@ public partial class LevelScreen : Control
 		var spawnPath = $"BlockSpawn/BlockSpawnLocation{spawnIndex}";
 		var spawnLocation = GetNode<PathFollow2D>(spawnPath);
 		
-		block2.Position = spawnLocation.Position;
+		block3.Position = spawnLocation.Position;
 		
-		AddChild(block2);
+		AddChild(block3);
 	}
 }
