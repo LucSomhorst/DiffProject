@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 public partial class LevelScreen : Control
 {
-	[Export]
-	public PackedScene BlockScene { get; set; }
+	[Export] public PackedScene BlockScene { get; set; }
+	[Export] public PackedScene TapBlockScene { get; set; }
+	[Export] public PackedScene HoldBlockScene { get; set; }
+
 	[Signal]
 	public delegate void EndGameEventHandler();
 	
@@ -61,12 +63,26 @@ public partial class LevelScreen : Control
 	}
 	private void OnBlockTimerTimeout()
 	{
-		Block block = BlockScene.Instantiate<Block>();
+		TapBlock block = BlockScene.Instantiate<TapBlock>();
+		HoldBlock block2 = HoldBlockScene.Instantiate<HoldBlock>();
+		BlockBase block3;
+		RandomNumberGenerator rng = new RandomNumberGenerator();
 		
-		var blockSpawnLocation = GetNode<PathFollow2D>("BlockSpawn/BlockSpawnLocation");
+		// 50% kans hold / tap
+		if (rng.RandiRange(0, 1) == 0){
+			block3 = TapBlockScene.Instantiate<TapBlock>();
+		}
+		else{
+			block3 = HoldBlockScene.Instantiate<HoldBlock>();
+		}
 		
-		block.Position = blockSpawnLocation.Position;
+		// Random spawnpoint tussen 1 en 4
+		int spawnIndex = rng.RandiRange(1, 4);
+		var spawnPath = $"BlockSpawn/BlockSpawnLocation{spawnIndex}";
+		var spawnLocation = GetNode<PathFollow2D>(spawnPath);
 		
-		AddChild(block);
+		block2.Position = spawnLocation.Position;
+		
+		AddChild(block2);
 	}
 }

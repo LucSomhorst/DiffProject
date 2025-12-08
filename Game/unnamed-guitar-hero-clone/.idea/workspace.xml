@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ae57038-58a8-4a7b-902e-571a684022de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/LevelScreen.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/LevelScreen.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/LevelScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/LevelScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/Block.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/Test scene Thomas.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/Test scene Thomas.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/Block.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/Block.cs.uid" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/Hitzone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone3.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone3.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Hitzone4.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Hitzone4.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +22,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/scripts/BlockBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/scripts/Hitzone.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/scripts/Hitzone1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/scripts/Hitzone2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/scripts/Hitzone3.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/scripts/Hitzone4.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/Hitzone2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/Hitzone3.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/Hitzone4.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/HoldBlock.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/LevelScreen.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/TapBlock.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -37,23 +41,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;25-hitzone-aanpassen-met-keybindings&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Player.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "20-blokken-met-mechanics",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Executable.Player">
     <configuration name="Debug GDScript (Running session)" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory">
       <option name="json" value="{&#10;  // Launch: &quot;Launch a new instance of the game&quot;,&#10;  // Attach: &quot;Attach to an already running game, which was started from the Godot Editor&quot;&#10;  &quot;request&quot; : &quot;Attach&quot;,&#10;  &quot;debugServer&quot; : 6006, // port should match the Debug Adapter port in the Godot Editor project settings.&#10;  &quot;scene&quot; : &quot;main&quot;, // main, current, res://path/to/file.tscn&#10;  &#10;  // &quot;playArgs&quot; : [ &quot;--editor&quot; ], // debugging a tool script&#10;  // &quot;playArgs&quot;: [&quot;--debug-collisions&quot;,&quot;--debug-navigation&quot;], // different options&#10;  &#10;  // one click deploy and debug via Godot Editor:&#10;  // &quot;platform&quot;: &quot;Android&quot;, // including Android, iOS, Web and W4 consoles&#10;  // &quot;device&quot;: &quot;0&quot;, // index of the device of a &quot;platform&quot; type&#10;}" />
@@ -117,6 +121,7 @@
       <workItem from="1763387777197" duration="620000" />
       <workItem from="1763547607271" duration="823000" />
       <workItem from="1763555080711" duration="535000" />
+      <workItem from="1765149019898" duration="1319000" />
     </task>
     <servers />
   </component>
