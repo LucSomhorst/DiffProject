@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://v30pdr6y118y"]
+[gd_scene load_steps=11 format=3 uid="uid://v30pdr6y118y"]
 
 [ext_resource type="Script" uid="uid://2agfusotajkk" path="res://Scripts/LevelScreen.cs" id="1_00ksh"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_1exrr"]
@@ -22,7 +22,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00ksh")
-BlockScene = ExtResource("2_x353h")
+TapBlockScene = ExtResource("2_x353h")
+HoldBlockScene = ExtResource("3_84cs6")
 
 [node name="BlockTimer" type="Timer" parent="."]
 
@@ -34,7 +35,6 @@ layout_mode = 2
 offset_right = 1280.0
 offset_bottom = 720.0
 theme = SubResource("Theme_fvtre")
-theme_override_styles/panel = ExtResource("2_1exrr")
 
 [node name="EndGame" type="Button" parent="."]
 layout_mode = 2
@@ -54,26 +54,57 @@ text = "Default"
 [node name="BlockSpawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_mn8xq")
 
-[node name="BlockSpawnLocation" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(628, 221)
+[node name="BlockSpawnLocation1" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(211, 225)
 rotation = 1.13583
+
+[node name="BlockSpawnLocation2" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(497, 225)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation3" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(783, 225)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation4" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(1069, 225)
+rotation = -2.8757
+
+[node name="Hitzone1" parent="." instance=ExtResource("4_84cs6")]
+position = Vector2(211, 606)
+scale = Vector2(2.5, 2.5)
+
+[node name="Hitzone2" parent="." instance=ExtResource("5_6dn54")]
+position = Vector2(497, 606)
+scale = Vector2(2.5, 2.5)
+
+[node name="Hitzone3" parent="." instance=ExtResource("6_75u8g")]
+position = Vector2(783, 606)
+scale = Vector2(2.5, 2.5)
+
+[node name="Hitzone4" parent="." instance=ExtResource("7_oij81")]
+position = Vector2(1069, 606)
+scale = Vector2(2.5, 2.5)
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("5_cji5a")
 
 [node name="Score" type="Label" parent="ScoreManager"]
-anchors_preset = -1
-anchor_left = 0.426
-anchor_top = 0.143
-anchor_right = 0.571
-anchor_bottom = 0.277
-offset_left = -0.920044
-offset_top = -0.440002
-offset_right = 2.67993
-offset_bottom = 10.84
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -81.0
+offset_top = 103.0
+offset_right = 81.0
+offset_bottom = 213.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 80
 text = "Test"
-metadata/_edit_use_anchors_ = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Hitzone" parent="." instance=ExtResource("4_cji5a")]
 position = Vector2(642, 686)

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public partial class LevelScreen : Control
 {
-	[Export]
-	public PackedScene BlockScene { get; set; }
+	[Export] public PackedScene TapBlockScene { get; set; }
+	[Export] public PackedScene HoldBlockScene { get; set; }
+
 	[Signal]
 	public delegate void EndGameEventHandler();
-	public string LevelFile { get; set; }
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -16,9 +16,10 @@ public partial class LevelScreen : Control
 		
 	}
 	
-	public void Contructor()
+	public void Contructor(string levelPath)
 	{
-		List<string> values = LoadFile(LevelFile);
+		GD.Print(levelPath);
+		List<string> values = LoadFile(levelPath);
 		var label = GetNode<Label>("LevelName");
 		label.Text = values[0];
 		var timer = GetNode<Timer>("BlockTimer");
@@ -53,7 +54,6 @@ public partial class LevelScreen : Control
 	
 	public void NewGame()
 	{
-
 		GetNode<Timer>("StartTimer").Start();
 	}
 	private void OnStartTimerTimeout()
@@ -62,12 +62,29 @@ public partial class LevelScreen : Control
 	}
 	private void OnBlockTimerTimeout()
 	{
-		Block block = BlockScene.Instantiate<Block>();
+		//tapBlock en holdBlock voor testen specifiek blok
+		TapBlock tapBlock = TapBlockScene.Instantiate<TapBlock>();
+		HoldBlock holdBlock = HoldBlockScene.Instantiate<HoldBlock>();
 		
-		var blockSpawnLocation = GetNode<PathFollow2D>("BlockSpawn/BlockSpawnLocation");
+		// block die gerandomized wordt
+		BlockBase randomBlock;
 		
-		block.Position = blockSpawnLocation.Position;
+		// 50% kans hold / tap
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		if (rng.RandiRange(0, 1) == 0){
+			randomBlock = TapBlockScene.Instantiate<TapBlock>();
+		}
+		else{
+			randomBlock = HoldBlockScene.Instantiate<HoldBlock>();
+		}
 		
-		AddChild(block);
+		// Random spawnpoint tussen 1 en 4
+		int spawnIndex = rng.RandiRange(1, 4);
+		var spawnPath = $"BlockSpawn/BlockSpawnLocation{spawnIndex}";
+		var spawnLocation = GetNode<PathFollow2D>(spawnPath);
+		
+		randomBlock.Position = spawnLocation.Position;
+		
+		AddChild(randomBlock);
 	}
 }

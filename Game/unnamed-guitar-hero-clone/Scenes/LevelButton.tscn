@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvxkvysl21efq"]
+
+[ext_resource type="Script" uid="uid://c02oy04pn003a" path="res://scripts/LevelButton.cs" id="1_yoeyv"]
+
+[node name="Control" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yoeyv")
+
+[node name="PlayLevelButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="PlayLevelButton" to="." method="OnLevelButtonClicked"]

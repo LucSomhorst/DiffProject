@@ -7,4 +7,10 @@
   <ItemGroup>
     <Content Include="settings.cfg" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Levels\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Levels\**" />
+  </ItemGroup>
 </Project>
