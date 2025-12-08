@@ -10,7 +10,6 @@ public partial class LevelScreen : Control
 
 	[Signal]
 	public delegate void EndGameEventHandler();
-
 	private int blocksSent = 0;
 	private int blocksToLevel = 10;
 	private int level = 1;

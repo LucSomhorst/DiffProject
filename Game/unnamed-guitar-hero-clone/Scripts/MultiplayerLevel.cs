@@ -73,7 +73,7 @@ public partial class MultiplayerLevel : Control
 	}
 	private void OnBlockTimerTimeout()
 	{
-		Block block = BlockScene.Instantiate<Block>();
+		TapBlock block = BlockScene.Instantiate<TapBlock>();
 		
 		var blockSpawnLocation = GetNode<PathFollow2D>("BlockSpawn/BlockSpawnLocation");
 		
