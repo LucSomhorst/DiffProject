@@ -1,13 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://v30pdr6y118y"]
 
-[ext_resource type="Script" uid="uid://2agfusotajkk" path="res://scripts/LevelScreen.cs" id="1_00ksh"]
-[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/TapBlock.tscn" id="2_x353h"]
-[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_84cs6"]
-[ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://scenes/Hitzone1.tscn" id="4_84cs6"]
-[ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://scenes/Hitzone2.tscn" id="5_6dn54"]
-[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="5_cji5a"]
-[ext_resource type="PackedScene" uid="uid://dimm7yj8lt50a" path="res://scenes/Hitzone3.tscn" id="6_75u8g"]
-[ext_resource type="PackedScene" uid="uid://mg5e5sdaiid1" path="res://scenes/Hitzone4.tscn" id="7_oij81"]
+[ext_resource type="Script" uid="uid://2agfusotajkk" path="res://Scripts/LevelScreen.cs" id="1_00ksh"]
+[ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_1exrr"]
+[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/Block.tscn" id="2_x353h"]
+[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://Scenes/Hitzone.tscn" id="4_cji5a"]
+[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://Scripts/ScoreManager.cs" id="5_cji5a"]
 
 [sub_resource type="Theme" id="Theme_fvtre"]
 
@@ -19,37 +16,40 @@ point_count = 1
 
 [node name="LevelScreen" type="Control"]
 layout_mode = 3
-anchor_right = 0.819
-anchor_bottom = 1.651
-offset_right = 233.68
-offset_bottom = -438.72
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00ksh")
 TapBlockScene = ExtResource("2_x353h")
 HoldBlockScene = ExtResource("3_84cs6")
 
+[node name="BlockTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Background" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1292.0
-offset_bottom = 726.0
+layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 720.0
 theme = SubResource("Theme_fvtre")
 
-[node name="LevelName" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -178.0
-offset_right = 178.0
+[node name="EndGame" type="Button" parent="."]
+layout_mode = 2
+offset_right = 158.0
 offset_bottom = 137.0
-grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Levels"
+
+[node name="LevelName" type="Label" parent="."]
+layout_mode = 2
+offset_left = 162.0
+offset_right = 518.0
+offset_bottom = 137.0
 theme_override_font_sizes/font_size = 100
 text = "Default"
-
-[node name="BlockTimer" type="Timer" parent="."]
 
 [node name="BlockSpawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_mn8xq")
@@ -106,12 +106,8 @@ text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EndGame" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_font_sizes/font_size = 50
-text = "Levels"
+[node name="Hitzone" parent="." instance=ExtResource("4_cji5a")]
+position = Vector2(642, 686)
 
 [connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
