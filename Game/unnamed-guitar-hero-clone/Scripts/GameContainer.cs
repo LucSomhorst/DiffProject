@@ -25,6 +25,7 @@ public partial class GameContainer : PanelContainer
 		var packedScene = ResourceLoader.Load<PackedScene>($"res://Scenes/{scene}.tscn");
 		var NodeScene = packedScene.Instantiate();
 		AddChild(NodeScene);
+		GD.Print(NodeScene.Name);
 		return NodeScene;
 	}
 	
