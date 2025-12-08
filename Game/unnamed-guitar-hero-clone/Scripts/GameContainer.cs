@@ -25,6 +25,7 @@ public partial class GameContainer : PanelContainer
 		var packedScene = ResourceLoader.Load<PackedScene>($"res://Scenes/{scene}.tscn");
 		var NodeScene = packedScene.Instantiate();
 		AddChild(NodeScene);
+		GD.Print(NodeScene.Name);
 		return NodeScene;
 	}
 	
@@ -39,9 +40,9 @@ public partial class GameContainer : PanelContainer
 	
 	private void OpenLevel1()
 	{
-		var level = (LevelScreen)ChangeScene("LevelScreen");
+		var level = (MultiplayerScreen)ChangeScene("MultiplayerScreen");
 		level.LevelFile = "res://Levels/Level 1.txt";
-		level.Contructor();
+		//level.Contructor();
 		level.EndGame += OpenGameScreen;
 	}
 	

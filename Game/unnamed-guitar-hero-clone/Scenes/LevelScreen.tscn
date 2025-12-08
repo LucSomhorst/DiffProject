@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://v30pdr6y118y"]
 
-[ext_resource type="Script" uid="uid://2agfusotajkk" path="res://scripts/LevelScreen.cs" id="1_00ksh"]
+[ext_resource type="Script" uid="uid://2agfusotajkk" path="res://Scripts/LevelScreen.cs" id="1_00ksh"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_1exrr"]
 [ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/Block.tscn" id="2_x353h"]
 [ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://Scenes/Hitzone.tscn" id="4_cji5a"]
@@ -16,37 +16,40 @@ point_count = 1
 
 [node name="LevelScreen" type="Control"]
 layout_mode = 3
-anchor_right = 0.819
-anchor_bottom = 1.651
-offset_right = -0.480103
-offset_bottom = -0.0800781
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00ksh")
 BlockScene = ExtResource("2_x353h")
 
+[node name="BlockTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Background" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 1936.0
-offset_bottom = 1073.0
+layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 720.0
 theme = SubResource("Theme_fvtre")
 theme_override_styles/panel = ExtResource("2_1exrr")
 
+[node name="EndGame" type="Button" parent="."]
+layout_mode = 2
+offset_right = 158.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 50
+text = "Levels"
+
 [node name="LevelName" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.505
-anchor_top = 0.009
-anchor_right = 0.718
-anchor_bottom = 0.126
-offset_left = 0.140076
-offset_top = -0.0470009
-offset_right = -0.696045
-offset_bottom = -12.658
+layout_mode = 2
+offset_left = 162.0
+offset_right = 518.0
+offset_bottom = 137.0
 theme_override_font_sizes/font_size = 100
 text = "Default"
-
-[node name="BlockTimer" type="Timer" parent="."]
 
 [node name="BlockSpawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_mn8xq")
@@ -54,13 +57,6 @@ curve = SubResource("Curve2D_mn8xq")
 [node name="BlockSpawnLocation" type="PathFollow2D" parent="BlockSpawn"]
 position = Vector2(628, 221)
 rotation = 1.13583
-
-[node name="Hitzone" parent="." instance=ExtResource("4_cji5a")]
-position = Vector2(638, 667)
-scale = Vector2(10, 10)
-
-[node name="StartTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("5_cji5a")
@@ -77,13 +73,10 @@ offset_right = 2.67993
 offset_bottom = 10.84
 theme_override_font_sizes/font_size = 80
 text = "Test"
+metadata/_edit_use_anchors_ = true
 
-[node name="EndGame" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_font_sizes/font_size = 50
-text = "Levels"
+[node name="Hitzone" parent="." instance=ExtResource("4_cji5a")]
+position = Vector2(642, 686)
 
 [connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
