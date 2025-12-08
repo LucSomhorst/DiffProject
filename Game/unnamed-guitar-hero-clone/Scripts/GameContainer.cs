@@ -41,7 +41,7 @@ public partial class GameContainer : PanelContainer
 		GD.Print("level opened");
 		var level = (LevelScreen)ChangeScene("LevelScreen");
 		GD.Print(path);
-		level.Constructor(path);
+		level.Contructor(path);
 		level.EndGame += OpenGameScreen;
 	}
 	
