@@ -53,7 +53,6 @@ public partial class MultiplayerLevel : Control
 			values.Add(line);
 			index++;
 		}
-
 		return values;
 	}
 	public void StopGame()
