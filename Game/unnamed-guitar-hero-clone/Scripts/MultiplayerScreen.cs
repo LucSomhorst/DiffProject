@@ -12,13 +12,13 @@ public partial class MultiplayerScreen : Control
 	{
 		CallDeferred(nameof(Constructor));
 	}
-	public void Constructor()
+	public void Constructor(string levelpath)
 	{
 		//List<string> values = LoadFile(LevelFile);
 		var level1 = GetNode<MultiplayerLevel>("MultiplayerLevel");
-		level1.Constructor();
+		level1.Constructor(levelpath);
 		var level2 = GetNode<MultiplayerLevel>("MultiplayerLevel2");
-		level2.Constructor();
+		level2.Constructor(levelpath);
 		level2.ChangeKeyBindForMP();
 		level2.ChangeLabelPostitionForMP();
 		
