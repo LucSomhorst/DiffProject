@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccko2l5r203b7"]
+[gd_scene load_steps=11 format=3 uid="uid://ccko2l5r203b7"]
 
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="1_f345m"]
 [ext_resource type="Script" uid="uid://cudbirsyw8vg6" path="res://Scripts/MultiplayerLevel.cs" id="1_lxv4y"]
 [ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/TapBlock.tscn" id="2_tjf07"]
+[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://Scenes/HoldBlock.tscn" id="3_qgfql"]
 [ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://Scripts/ScoreManager.cs" id="3_tjf07"]
 [ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://Scenes/Hitzone1.tscn" id="5_qtn8k"]
 [ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://Scenes/Hitzone2.tscn" id="6_qgfql"]
@@ -23,7 +24,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lxv4y")
-BlockScene = ExtResource("2_tjf07")
+TapBlockScene = ExtResource("2_tjf07")
+HoldBlockScene = ExtResource("3_qgfql")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -53,48 +55,38 @@ theme_override_font_sizes/font_size = 80
 text = "Test"
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Hitzone1" parent="HBoxContainer" instance=ExtResource("5_qtn8k")]
+[node name="Hitzone1" parent="." instance=ExtResource("5_qtn8k")]
 position = Vector2(93, 602)
 scale = Vector2(1.2, 1.2)
 
-[node name="Hitzone2" parent="HBoxContainer" instance=ExtResource("6_qgfql")]
+[node name="Hitzone2" parent="." instance=ExtResource("6_qgfql")]
 position = Vector2(262, 602)
 scale = Vector2(1.2, 1.2)
 
-[node name="Hitzone3" parent="HBoxContainer" instance=ExtResource("7_hccg8")]
+[node name="Hitzone3" parent="." instance=ExtResource("7_hccg8")]
 position = Vector2(406, 603)
 scale = Vector2(1.2, 1.2)
 
-[node name="Hitzone4" parent="HBoxContainer" instance=ExtResource("8_myuc5")]
+[node name="Hitzone4" parent="." instance=ExtResource("8_myuc5")]
 position = Vector2(559, 601)
 scale = Vector2(1.2, 1.2)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BlockSpawn" type="Path2D" parent="HBoxContainer2"]
+[node name="BlockSpawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_avoqa")
 
-[node name="BlockSpawnLocation1" type="PathFollow2D" parent="HBoxContainer2/BlockSpawn"]
+[node name="BlockSpawnLocation1" type="PathFollow2D" parent="BlockSpawn"]
 position = Vector2(92, 216.99997)
 rotation = 1.13583
 
-[node name="BlockSpawnLocation2" type="PathFollow2D" parent="HBoxContainer2/BlockSpawn"]
+[node name="BlockSpawnLocation2" type="PathFollow2D" parent="BlockSpawn"]
 position = Vector2(263.99997, 221.99995)
 rotation = 2.27166
 
-[node name="BlockSpawnLocation3" type="PathFollow2D" parent="HBoxContainer2/BlockSpawn"]
+[node name="BlockSpawnLocation3" type="PathFollow2D" parent="BlockSpawn"]
 position = Vector2(400, 219.99998)
 rotation = 2.27166
 
-[node name="BlockSpawnLocation4" type="PathFollow2D" parent="HBoxContainer2/BlockSpawn"]
+[node name="BlockSpawnLocation4" type="PathFollow2D" parent="BlockSpawn"]
 position = Vector2(557.99994, 225.99997)
 rotation = -2.8757
 

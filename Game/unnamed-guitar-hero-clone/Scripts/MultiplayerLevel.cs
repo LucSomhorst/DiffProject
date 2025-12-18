@@ -27,8 +27,8 @@ public partial class MultiplayerLevel : Control
 	{
 		GD.Print(levelPath);
 		List<string> values = LoadFile(levelPath);
-		var label = GetNode<Label>("LevelName");
-		label.Text = values[0];
+		//var label = GetNode<Label>("LevelName");
+		//label.Text = values[0];
 		blockTimer = GetNode<Timer>("BlockTimer");
 		blockTimer.WaitTime = Convert.ToSingle(values[1]);
 		if (values[2] != null && values[2] != " ")
@@ -46,8 +46,14 @@ public partial class MultiplayerLevel : Control
 	}
 	public void ChangeKeyBindForMP()
 	{
-		var secondHitzone = GetNode<Hitzone>("Hitzone");
-		secondHitzone.HitKey = "N";
+		var firstHitzone = GetNode<Hitzone1>("Hitzone1");
+		var secondHitzone = GetNode<Hitzone2>("Hitzone2");
+		var thirdHitzone = GetNode<Hitzone3>("Hitzone3");
+		var fourthHitzone = GetNode<Hitzone4>("Hitzone4");
+		firstHitzone.HitKey = "H";
+		secondHitzone.HitKey = "J";
+		thirdHitzone.HitKey = "K";
+		fourthHitzone.HitKey = "L";
 	}
 	public void ChangeLabelPostitionForMP()
 	{
