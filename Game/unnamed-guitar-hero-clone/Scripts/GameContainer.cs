@@ -32,14 +32,22 @@ public partial class GameContainer : PanelContainer
 	public void OpenGameScreen()
 	{
 		var levelSelect = (LevelSelect)ChangeScene("LevelSelect");
-		levelSelect.StartLevel += OpenLevel;
 		levelSelect.ExitBtn += ExitGame; 
 	}
 
-	private void OpenLevel(string path)
+	internal void OpenSingleplayer(string path)
 	{
 		GD.Print("level opened");
 		var level = (LevelScreen)ChangeScene("LevelScreen");
+		GD.Print(path);
+		level.Constructor(path);
+		level.EndGame += OpenGameScreen;
+	}
+
+	internal void OpenMultiplayer(string path)
+	{
+		GD.Print("level opened");
+		var level = (MultiplayerScreen)ChangeScene("MultiplayerScreen");
 		GD.Print(path);
 		level.Constructor(path);
 		level.EndGame += OpenGameScreen;

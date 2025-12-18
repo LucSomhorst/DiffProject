@@ -1,12 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccko2l5r203b7"]
+[gd_scene load_steps=11 format=3 uid="uid://ccko2l5r203b7"]
 
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="1_f345m"]
 [ext_resource type="Script" uid="uid://cudbirsyw8vg6" path="res://Scripts/MultiplayerLevel.cs" id="1_lxv4y"]
-[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/Block.tscn" id="2_tjf07"]
+[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/TapBlock.tscn" id="2_tjf07"]
+[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://Scenes/HoldBlock.tscn" id="3_qgfql"]
 [ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://Scripts/ScoreManager.cs" id="3_tjf07"]
-[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://Scenes/Hitzone.tscn" id="4_3prlm"]
+[ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://Scenes/Hitzone1.tscn" id="5_qtn8k"]
+[ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://Scenes/Hitzone2.tscn" id="6_qgfql"]
+[ext_resource type="PackedScene" uid="uid://dimm7yj8lt50a" path="res://Scenes/Hitzone3.tscn" id="7_hccg8"]
+[ext_resource type="PackedScene" uid="uid://mg5e5sdaiid1" path="res://Scenes/Hitzone4.tscn" id="8_myuc5"]
 
-[sub_resource type="Curve2D" id="Curve2D_enlec"]
+[sub_resource type="Curve2D" id="Curve2D_avoqa"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 628, 221)
 }
@@ -20,7 +24,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lxv4y")
-BlockScene = ExtResource("2_tjf07")
+TapBlockScene = ExtResource("2_tjf07")
+HoldBlockScene = ExtResource("3_qgfql")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -32,16 +37,6 @@ theme_override_styles/panel = ExtResource("1_f345m")
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="BlockSpawn" type="Path2D" parent="."]
-curve = SubResource("Curve2D_enlec")
-
-[node name="BlockSpawnLocation" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(289, 221)
-rotation = 1.13583
-
-[node name="Hitzone" parent="." instance=ExtResource("4_3prlm")]
-position = Vector2(288, 670)
 
 [node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("3_tjf07")
@@ -59,6 +54,41 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "Test"
 metadata/_edit_use_anchors_ = true
+
+[node name="Hitzone1" parent="." instance=ExtResource("5_qtn8k")]
+position = Vector2(93, 602)
+scale = Vector2(1.2, 1.2)
+
+[node name="Hitzone2" parent="." instance=ExtResource("6_qgfql")]
+position = Vector2(262, 602)
+scale = Vector2(1.2, 1.2)
+
+[node name="Hitzone3" parent="." instance=ExtResource("7_hccg8")]
+position = Vector2(406, 603)
+scale = Vector2(1.2, 1.2)
+
+[node name="Hitzone4" parent="." instance=ExtResource("8_myuc5")]
+position = Vector2(559, 601)
+scale = Vector2(1.2, 1.2)
+
+[node name="BlockSpawn" type="Path2D" parent="."]
+curve = SubResource("Curve2D_avoqa")
+
+[node name="BlockSpawnLocation1" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(92, 216.99997)
+rotation = 1.13583
+
+[node name="BlockSpawnLocation2" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(263.99997, 221.99995)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation3" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(400, 219.99998)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation4" type="PathFollow2D" parent="BlockSpawn"]
+position = Vector2(557.99994, 225.99997)
+rotation = -2.8757
 
 [connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
