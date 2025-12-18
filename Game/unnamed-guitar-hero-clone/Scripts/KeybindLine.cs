@@ -17,13 +17,13 @@ public partial class KeybindLine : HBoxContainer
 		
 	}
 
-	public void Constructor(string keyBindName, string keyBindValue, UnnamedGuitarHeroClone.Scripts.SettingsScreen parent)
+	public void Constructor(string KeyName, string keyBindValue, UnnamedGuitarHeroClone.Scripts.SettingsScreen parent, string displayName)
 	{
 		var label = (Label)GetNode("KeybindNameLabel");
-		label.Text = keyBindName;
+		label.Text = displayName;
 		var button = (Button)GetNode("MarginContainer/ChangeKeybindButton");
 		button.Text = keyBindValue;
-		key = keyBindName;
+		key = KeyName;
 		value = keyBindValue;
 		parentNode = parent;
 	}

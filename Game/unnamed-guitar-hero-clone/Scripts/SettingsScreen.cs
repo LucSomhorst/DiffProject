@@ -9,7 +9,6 @@ public partial class SettingsScreen : MarginContainer
 	private List<string> WindowOptions = ["windowed", "fullscreen", "borderless"];
 	private List<string> resolutionOptions = ["3840", "2560", "1920", "1600", "1536","1440", "1366", "1280"];
 	private List<string> uiscaleOptions = ["150", "100", "50"];
-
 	private int height;
 	private int width;
 	private string window;
@@ -38,13 +37,40 @@ public partial class SettingsScreen : MarginContainer
 		var keybinds = ConfigLocal.GetSectionKeys("Keybinds");
 		foreach (var keybind in keybinds)
 		{
+			var value = ConfigLocal.GetValue("Keybinds", keybind).ToString();
 			var packedScene = ResourceLoader.Load<PackedScene>($"res://Scenes/KeybindLine.tscn");
 			var NodeScene = (KeybindLine)packedScene.Instantiate();
-			var value = ConfigLocal.GetValue("Keybinds", keybind).ToString();
-			NodeScene.Constructor(keybind, value, this);
+			NodeScene.Constructor(keybind, value, this,GetKeyDisplayName(keybind));
 			keybindsContainer.AddChild(NodeScene);
 		}
 	}
+
+	private string GetKeyDisplayName(string key)
+	{
+		switch (key)
+		{
+			//
+			case "Player1Hitzone1":
+				return "P1 Hit zone 1";
+			case "Player1Hitzone2":
+				return "P1 Hit zone 2";
+			case "Player1Hitzone3":
+				return "P1 Hit zone 3";
+			case "Player1Hitzone4":
+				return "P1 Hit zone 4";
+			case "Player2Hitzone1":
+				return "P2 Hit zone 1";
+			case "Player2Hitzone2":
+				return "P2 Hit zone 2";
+			case "Player2Hitzone3":
+				return "P2 Hit zone 3";
+			case "Player2Hitzone4":
+				return "P2 Hit zone 4";
+		}
+		return key + "unnamed";
+	}
+	
+	
 
 	public void KeyBindChanged(string key, string value)
 	{

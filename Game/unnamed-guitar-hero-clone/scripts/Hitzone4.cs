@@ -8,7 +8,7 @@ public partial class Hitzone4 : Hitzone
 	public override void _Ready()
 	{
 		ConfigLocal.Load("res://settings.cfg");
-		HitKey = ConfigLocal.GetValue("Keybinds", "rightZone").ToString();
+		HitKey = ConfigLocal.GetValue("Keybinds", "Player1Hitzone4").ToString();
 		base._Ready();
 	}
 }

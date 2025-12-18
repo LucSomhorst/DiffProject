@@ -51,10 +51,10 @@ public partial class MultiplayerLevel : Control
 		var secondHitzone = GetNode<Hitzone2>("Hitzone2");
 		var thirdHitzone = GetNode<Hitzone3>("Hitzone3");
 		var fourthHitzone = GetNode<Hitzone4>("Hitzone4");
-		firstHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiLeftZone").ToString();
-		secondHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiMiddleLeftZone").ToString();
-		thirdHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiMiddleRightZone").ToString();
-		fourthHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiRightZone").ToString();
+		firstHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone1").ToString();
+		secondHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone2").ToString();
+		thirdHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone3").ToString();
+		fourthHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone4").ToString();
 	}
 	public void ChangeLabelPostitionForMP()
 	{
