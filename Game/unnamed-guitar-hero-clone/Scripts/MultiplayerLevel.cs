@@ -5,6 +5,7 @@ using System.Linq;
 
 public partial class MultiplayerLevel : Control
 {
+	private ConfigFile ConfigLocal = new();
 	[Export] public PackedScene TapBlockScene { get; set; }
 	[Export] public PackedScene HoldBlockScene { get; set; }
 	private int blocksSent = 0;
@@ -20,7 +21,7 @@ public partial class MultiplayerLevel : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		ConfigLocal.Load("res://settings.cfg");
 	}
 	
 	public void Constructor(string levelPath)
@@ -50,10 +51,10 @@ public partial class MultiplayerLevel : Control
 		var secondHitzone = GetNode<Hitzone2>("Hitzone2");
 		var thirdHitzone = GetNode<Hitzone3>("Hitzone3");
 		var fourthHitzone = GetNode<Hitzone4>("Hitzone4");
-		firstHitzone.HitKey = "H";
-		secondHitzone.HitKey = "J";
-		thirdHitzone.HitKey = "K";
-		fourthHitzone.HitKey = "L";
+		firstHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiLeftZone").ToString();
+		secondHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiMiddleLeftZone").ToString();
+		thirdHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiMiddleRightZone").ToString();
+		fourthHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "multiRightZone").ToString();
 	}
 	public void ChangeLabelPostitionForMP()
 	{
