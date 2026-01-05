@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://45jmhwbimkqs"]
+[gd_scene load_steps=5 format=3 uid="uid://45jmhwbimkqs"]
 
-[ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://Scripts/ScoreboardScreen.cs" id="1_yx26b"]
+[ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_4xi4b"]
+[ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://scripts/ScoreboardScreen.cs" id="1_yx26b"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_qwao4"]
 [ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Themes/InnerMenuTheme.tres" id="3_agcct"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4xi4b")
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100

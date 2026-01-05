@@ -1,6 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpnakkn3c27c6"]
+[gd_scene load_steps=6 format=3 uid="uid://bpnakkn3c27c6"]
 
 [ext_resource type="Script" uid="uid://c5ei11esrfemx" path="res://scripts/MenuScreen.cs" id="1_33mj8"]
+[ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_eeil4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lk3f"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.294118, 0.764706, 0.709804, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxjmc"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.227451, 0.662745, 0.615686, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tp11t"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.109804, 0.172549, 0.329412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="MenuScreen" type="Control"]
 layout_mode = 3
@@ -11,6 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_eeil4")
 script = ExtResource("1_33mj8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -32,6 +67,11 @@ alignment = 1
 [node name="Button5" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.00392157, 0.0156863, 0.00784314, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/hover = SubResource("StyleBoxFlat_1lk3f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kxjmc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tp11t")
 text = "Start Game"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
