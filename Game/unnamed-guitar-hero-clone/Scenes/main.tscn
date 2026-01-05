@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c36rbmwrgkxhp"]
+[gd_scene load_steps=6 format=3 uid="uid://c36rbmwrgkxhp"]
 
 [ext_resource type="Script" uid="uid://j6ic7e6gyp8r" path="res://scripts/Main.cs" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://sc4hmbkohm3w" path="res://scripts/GameContainer.cs" id="2_8gbba"]
 [ext_resource type="Script" uid="uid://d20t25ql1jpbc" path="res://scripts/MenusContainer.cs" id="2_bo1nx"]
+[ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="2_jyhfs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bo1nx"]
 blend_mode = 1
@@ -11,6 +12,11 @@ light_mode = 1
 [node name="Main" type="Node"]
 script = ExtResource("1_bo1nx")
 
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1279.0
+offset_bottom = 720.0
+theme = ExtResource("2_jyhfs")
+
 [node name="GameContainer" type="PanelContainer" parent="."]
 visible = false
 anchors_preset = 15
@@ -18,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_jyhfs")
 script = ExtResource("2_8gbba")
 
 [node name="MenusContainer" type="PanelContainer" parent="."]
@@ -27,4 +34,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_jyhfs")
 script = ExtResource("2_bo1nx")
