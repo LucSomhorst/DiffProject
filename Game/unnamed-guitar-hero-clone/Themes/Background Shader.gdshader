@@ -18,8 +18,8 @@ void fragment() {
 	float t = time * speed;
 
 	float wave =
-		sin((uv.y + t) * 6.0) * wave_strength +
-		cos((uv.x - t) * 4.0) * wave_strength;
+		sin((uv.y * 3.0  + t) * 6.0) * wave_strength +
+		cos((uv.x * 2.0  - t) * 4.0) * wave_strength;
 
 	float gradient = uv.y + wave;
 
@@ -27,6 +27,13 @@ void fragment() {
 	vec4 final_color = mix(base_color, color_c, uv.x * 0.3);
 
 	COLOR = final_color;
+
+    //COLOR = vec4(
+        //0.10 + wave,
+        //0.08 + wave * 0.8,
+        //0.16 + wave * 1.2,
+        //1.0
+    //);
 }
 
 //void light() {
