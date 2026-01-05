@@ -1,9 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c36rbmwrgkxhp"]
+[gd_scene load_steps=8 format=3 uid="uid://c36rbmwrgkxhp"]
 
 [ext_resource type="Script" uid="uid://j6ic7e6gyp8r" path="res://scripts/Main.cs" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://sc4hmbkohm3w" path="res://scripts/GameContainer.cs" id="2_8gbba"]
 [ext_resource type="Script" uid="uid://d20t25ql1jpbc" path="res://scripts/MenusContainer.cs" id="2_bo1nx"]
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="2_jyhfs"]
+[ext_resource type="Shader" uid="uid://b41iqik464ys2" path="res://Themes/Background Shader.gdshader" id="3_tbgi4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tefeu"]
+shader = ExtResource("3_tbgi4")
+shader_parameter/color_a = Color(0.29, 0.76, 0.71, 1)
+shader_parameter/color_b = Color(0.11, 0.17, 0.33, 1)
+shader_parameter/color_c = Color(0.82, 0.46, 0.72, 1)
+shader_parameter/time = 0.0
+shader_parameter/speed = 0.15
+shader_parameter/wave_strength = 0.08
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bo1nx"]
 blend_mode = 1
@@ -13,9 +23,21 @@ light_mode = 1
 script = ExtResource("1_bo1nx")
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 1279.0
-offset_bottom = 720.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_jyhfs")
+
+[node name="Background" type="ColorRect" parent="."]
+process_mode = 3
+material = SubResource("ShaderMaterial_tefeu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GameContainer" type="PanelContainer" parent="."]
 visible = false

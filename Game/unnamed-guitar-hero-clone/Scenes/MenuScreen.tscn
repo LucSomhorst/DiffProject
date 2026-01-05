@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpnakkn3c27c6"]
+[gd_scene load_steps=7 format=3 uid="uid://bpnakkn3c27c6"]
 
 [ext_resource type="Script" uid="uid://c5ei11esrfemx" path="res://scripts/MenuScreen.cs" id="1_33mj8"]
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_eeil4"]
+[ext_resource type="Texture2D" uid="uid://bpfsd2xen6qls" path="res://Assets/Beat Rush Logo Transparant.png" id="3_1lk3f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lk3f"]
 content_margin_left = 12.0
@@ -48,6 +49,26 @@ size_flags_vertical = 4
 theme = ExtResource("1_eeil4")
 script = ExtResource("1_33mj8")
 
+[node name="Logo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -359.0
+offset_right = 302.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1lk3f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo"]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -56,9 +77,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -100.0
+offset_top = -73.0
 offset_right = 150.0
-offset_bottom = 100.0
+offset_bottom = 157.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
