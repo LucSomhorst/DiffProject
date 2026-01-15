@@ -116,7 +116,6 @@ public partial class LevelScreen : Control
 				.Select(f => path + f.Replace(".txt", ""))
 				.ToArray();
 			return files;
-		
 	}
 	
 	private void SpawnBlock()
