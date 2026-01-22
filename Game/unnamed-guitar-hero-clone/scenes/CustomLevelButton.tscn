@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnncrkm5n0jaa"]
+
+[ext_resource type="Script" uid="uid://dcugc6gr8x8y8" path="res://scripts/CustomLevelButton.cs" id="1_6vt11"]
+[ext_resource type="Theme" uid="uid://u2ki7ed1tlhf" path="res://Themes/MenuButtonTextTheme.tres" id="2_tncvt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bp8r"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="CustomLevelButton" type="MarginContainer" node_paths=PackedStringArray("NameLabel", "EditButton")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_6vt11")
+NameLabel = NodePath("Container/NameLabel")
+EditButton = NodePath("Container/EditButton")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bp8r")
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("2_tncvt")
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="Container"]
+layout_mode = 2
+text = "NewButton"
+
+[node name="EditButton" type="Button" parent="Container"]
+layout_mode = 2
+text = "Edit"

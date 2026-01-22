@@ -27,19 +27,33 @@ public partial class LevelScreen : Control
 	public void Constructor(string levelPath)
 	{
 		List<string> values = LoadFile(levelPath);
-		var label = GetNode<Label>("LevelName");
-		label.Text = values[0];
+
+		// Level name
+		GetNode<Label>("LevelName").Text = values[0];
+
+		// Block timer
 		blockTimer = GetNode<Timer>("BlockTimer");
-		blockTimer.WaitTime = Convert.ToSingle(values[1]);
-		if (values[2] != null && values[2] != " ")
+		var timerValue  = Convert.ToDouble(values[1]);
+		if (timerValue < 10) 
+			blockTimer.WaitTime = timerValue; 
+		else 
+			blockTimer.WaitTime = timerValue/60; 
+
+		// Patterns
+		if (!string.IsNullOrWhiteSpace(values[2]))
 		{
-			string[] patterns = values[2].Split(",", StringSplitOptions.TrimEntries);
+			string[] patterns = values[2]
+				.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
 			LoadPatterns(patterns);
 		}
-		if (values[3] != null && values[3] != " ")
+
+		// Follow pattern flag
+		if (!string.IsNullOrWhiteSpace(values[3]))
 		{
 			followPattern = Convert.ToBoolean(values[3]);
 		}
+
 		NewGame();
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
