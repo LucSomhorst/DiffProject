@@ -51,6 +51,31 @@ public partial class Hitzone : Area2D
 			//GD.Print("⬅️ Block left hitzone");
 		}
 	}
+
+	public void ButtonPressed()
+	{
+		if (_enteredBlock != null)
+		{
+			_enteredBlock.OnHit(this);
+			scoreManager.AddPoint();
+			if (_enteredBlock == null){
+				_visual.Color = _defaultColor;
+			}
+		}
+		else
+		{
+			GD.Print("❌ Miss!");
+		}
+	}
+
+	public void ButtonReleased()
+	{
+		if (_enteredBlock != null)
+		{
+			_enteredBlock.OnHoldEnd(this);
+			_visual.Color = _defaultColor;
+		}
+	}
 	
 	public override void _Input(InputEvent @event)
 	{
@@ -70,28 +95,13 @@ public partial class Hitzone : Area2D
 		// Check of de speler op de juiste toets drukt (bijv. spatie)
 		if (keyEvent.Pressed && keyEvent.Keycode == _key)
 		{
-			if (_enteredBlock != null)
-			{
-				_enteredBlock.OnHit(this);
-				scoreManager.AddPoint();
-				if (_enteredBlock == null){
-					_visual.Color = _defaultColor;
-				}
-			}
-			else
-			{
-				GD.Print("❌ Miss!");
-			}
+			ButtonPressed();
 		}
 		
 		// Detect key release (voor HoldBlock)
 		if (!keyEvent.Pressed && keyEvent.Keycode == _key)
 		{
-			if (_enteredBlock != null)
-			{
-				_enteredBlock.OnHoldEnd(this);
-				_visual.Color = _defaultColor;
-			}
+			ButtonReleased();
 		}
 	}
 	
