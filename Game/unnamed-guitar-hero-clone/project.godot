@@ -23,3 +23,7 @@ window/size/viewport_height=720
 [dotnet]
 
 project/assembly_name="Unnamed Guitar Hero Clone"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdserial/plugin.cfg")
