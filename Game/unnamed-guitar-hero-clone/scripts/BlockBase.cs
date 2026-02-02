@@ -5,7 +5,10 @@ public abstract partial class BlockBase : CharacterBody2D
 {
 	[Export] public float Speed = 200f; // snelheid waarmee het blok valt
 	public bool IsInsideHitzone { get; set; } = false;
-	
+	[Signal]
+	public delegate void BlockHitEventHandler(BlockBase sender);
+	[Signal]
+	public delegate void BlockMissedEventHandler();
 	// Blok beweegt naar beneden
 	public override void _Process(double delta)
 	{

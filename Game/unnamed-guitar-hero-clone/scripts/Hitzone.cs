@@ -31,10 +31,10 @@ public partial class Hitzone : Area2D
 			// markeer dat de block in de zone is
 			_enteredBlock = block;
 			block.IsInsideHitzone = true;
-			
+			_enteredBlock.BlockHit += OnHit;
+			_enteredBlock.BlockMissed += OnMiss;
 			// Verander kleur voor feedback
 			_visual.Color = _hitColor;
-			//GD.Print("🎯 Block in hitzone!");
 		}
 	}
 
@@ -73,14 +73,13 @@ public partial class Hitzone : Area2D
 			if (_enteredBlock != null)
 			{
 				_enteredBlock.OnHit(this);
-				scoreManager.AddPoint();
 				if (_enteredBlock == null){
 					_visual.Color = _defaultColor;
 				}
 			}
 			else
 			{
-				GD.Print("❌ Miss!");
+				OnMiss();
 			}
 		}
 		
@@ -93,6 +92,21 @@ public partial class Hitzone : Area2D
 				_visual.Color = _defaultColor;
 			}
 		}
+	}
+
+	private void OnHit(BlockBase sender)
+	{
+		var blockType = sender.GetType();
+		if (blockType == typeof(TapBlock))
+		{
+			scoreManager.BlockHit();
+		}
+			
+	}
+
+	private void OnMiss()
+	{
+		scoreManager.BlockMissed();
 	}
 	
 	public override void _Process(double delta)

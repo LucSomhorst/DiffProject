@@ -3,13 +3,12 @@ using System;
 
 public partial class TapBlock : BlockBase
 {
+
 	private bool _isHit = false;
 
 	public override void OnHit(Hitzone zone)
 	{
-		if (_isHit) return;
-		_isHit = true;
-		GD.Print("🎯 TAP HIT");
+		EmitSignalBlockHit(this);
 		QueueFree();
 	}
 
