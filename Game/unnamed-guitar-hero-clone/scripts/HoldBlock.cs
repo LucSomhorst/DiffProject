@@ -7,30 +7,30 @@ public partial class HoldBlock : BlockBase
 	private float _holdTime = 0f;
 	private float _requiredHoldTime = 0.3f; // voorbeeld: 0.3 seconden vasthouden
 	
-	public override void OnHit(Hitzone zone)
+	public override void OnHit()
 	{
 		_isHolding = true;
-		GD.Print("⏳ HOLD START");
 	}
 
-	public override void OnHold(Hitzone zone)
+	public void OnHold(Hitzone zone)
 	{
 		if (!_isHolding) return;
 
 		_holdTime += (float)zone.GetProcessDeltaTime();
 
-		if (_holdTime >= _requiredHoldTime)
+
+	}
+
+	public void OnHoldEnd(double timeHeld)
+	{
+		if ( timeHeld < _requiredHoldTime)
+		{
+			EmitSignalBlockMissed();
+		}
+		else if (timeHeld >= _requiredHoldTime)
 		{
 			EmitSignalBlockHit(this);
 			QueueFree();
-		}
-	}
-
-	public override void OnHoldEnd(Hitzone zone)
-	{
-		if (_isHolding && _holdTime < _requiredHoldTime)
-		{
-			EmitSignalBlockMissed();
 		}
 
 		_isHolding = false;

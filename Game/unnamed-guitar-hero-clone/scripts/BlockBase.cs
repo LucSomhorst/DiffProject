@@ -16,17 +16,11 @@ public abstract partial class BlockBase : CharacterBody2D
 	}
 	
 	// Wordt aangeroepen wanneer key wordt gedrukt in hitzone
-	public abstract void OnHit(Hitzone zone);
-	
-	// Wordt elke frame aangeroepen als block in hitzone blijft zitten
-	public abstract void OnHold(Hitzone zone);
-	
-	// Wordt aangeroepen wanneer key wordt losgelaten
-	public abstract void OnHoldEnd(Hitzone zone);
+	public abstract void OnHit();
 	
 	private void OnScreenExited()
 	{
+		EmitSignalBlockMissed();
 		QueueFree();
-		GD.Print("Removed");
 	}
 }

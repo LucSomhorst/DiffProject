@@ -1,13 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://v30pdr6y118y"]
+[gd_scene load_steps=8 format=3 uid="uid://v30pdr6y118y"]
 
 [ext_resource type="Script" uid="uid://2agfusotajkk" path="res://scripts/LevelScreen.cs" id="1_00ksh"]
 [ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/TapBlock.tscn" id="2_x353h"]
 [ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_84cs6"]
-[ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://scenes/Hitzone1.tscn" id="4_84cs6"]
-[ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://scenes/Hitzone2.tscn" id="5_6dn54"]
 [ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="5_cji5a"]
-[ext_resource type="PackedScene" uid="uid://dimm7yj8lt50a" path="res://scenes/Hitzone3.tscn" id="6_75u8g"]
-[ext_resource type="PackedScene" uid="uid://mg5e5sdaiid1" path="res://scenes/Hitzone4.tscn" id="7_oij81"]
+[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://scenes/Hitzone.tscn" id="5_qdpy8"]
 
 [sub_resource type="Theme" id="Theme_fvtre"]
 
@@ -17,7 +14,7 @@ _data = {
 }
 point_count = 1
 
-[node name="LevelScreen" type="Control"]
+[node name="LevelScreen" type="Control" node_paths=PackedStringArray("Hitzone1", "Hitzone2", "Hitzone3", "Hitzone4")]
 layout_mode = 3
 anchor_right = 0.819
 anchor_bottom = 1.651
@@ -28,13 +25,17 @@ grow_vertical = 2
 script = ExtResource("1_00ksh")
 TapBlockScene = ExtResource("2_x353h")
 HoldBlockScene = ExtResource("3_84cs6")
+Hitzone1 = NodePath("Hitzone")
+Hitzone2 = NodePath("Hitzone2")
+Hitzone3 = NodePath("Hitzone3")
+Hitzone4 = NodePath("Hitzone4")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 1292.0
-offset_bottom = 726.0
+offset_right = 1281.0
+offset_bottom = 721.0
 theme = SubResource("Theme_fvtre")
 
 [node name="LevelName" type="Label" parent="."]
@@ -42,9 +43,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -178.0
-offset_right = 178.0
-offset_bottom = 137.0
+offset_left = 266.0
+offset_top = -14.0
+offset_right = 657.0
+offset_bottom = 123.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 text = "Default"
@@ -55,36 +57,20 @@ text = "Default"
 curve = SubResource("Curve2D_mn8xq")
 
 [node name="BlockSpawnLocation1" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(211, 225)
+position = Vector2(256, 225)
 rotation = 1.13583
 
 [node name="BlockSpawnLocation2" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(497, 225)
+position = Vector2(512, 225)
 rotation = 2.27166
 
 [node name="BlockSpawnLocation3" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(783, 225)
+position = Vector2(768, 225)
 rotation = 2.27166
 
 [node name="BlockSpawnLocation4" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(1069, 225)
+position = Vector2(1024, 225)
 rotation = -2.8757
-
-[node name="Hitzone1" parent="." instance=ExtResource("4_84cs6")]
-position = Vector2(211, 606)
-scale = Vector2(2.5, 2.5)
-
-[node name="Hitzone2" parent="." instance=ExtResource("5_6dn54")]
-position = Vector2(497, 606)
-scale = Vector2(2.5, 2.5)
-
-[node name="Hitzone3" parent="." instance=ExtResource("6_75u8g")]
-position = Vector2(783, 606)
-scale = Vector2(2.5, 2.5)
-
-[node name="Hitzone4" parent="." instance=ExtResource("7_oij81")]
-position = Vector2(1069, 606)
-scale = Vector2(2.5, 2.5)
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
@@ -97,21 +83,41 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -81.0
-offset_top = 103.0
-offset_right = 81.0
-offset_bottom = 213.0
+offset_top = -2.0
+offset_right = 132.0
+offset_bottom = 108.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 80
-text = "Test"
+text = "Score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Multiplier" type="Label" parent="ScoreManager"]
+offset_left = 581.0
+offset_top = 96.0
+offset_right = 745.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 35
+text = "Multiplier"
+
 [node name="EndGame" type="Button" parent="."]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 158.0
+offset_bottom = 77.0
 theme_override_font_sizes/font_size = 50
 text = "Levels"
+
+[node name="Hitzone" parent="." instance=ExtResource("5_qdpy8")]
+position = Vector2(256, 600)
+
+[node name="Hitzone2" parent="." instance=ExtResource("5_qdpy8")]
+position = Vector2(512, 600)
+
+[node name="Hitzone3" parent="." instance=ExtResource("5_qdpy8")]
+position = Vector2(768, 600)
+
+[node name="Hitzone4" parent="." instance=ExtResource("5_qdpy8")]
+position = Vector2(1024, 600)
 
 [connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
