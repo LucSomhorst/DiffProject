@@ -14,28 +14,25 @@ _data = {
 }
 point_count = 1
 
-[node name="LevelScreen" type="Control" node_paths=PackedStringArray("Hitzone1", "Hitzone2", "Hitzone3", "Hitzone4")]
+[node name="LevelScreen" type="Control"]
 layout_mode = 3
 anchor_right = 0.819
 anchor_bottom = 1.651
-offset_right = 233.68
-offset_bottom = -438.72
+offset_right = 231.67993
+offset_bottom = -468.71997
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00ksh")
 TapBlockScene = ExtResource("2_x353h")
 HoldBlockScene = ExtResource("3_84cs6")
-Hitzone1 = NodePath("Hitzone")
-Hitzone2 = NodePath("Hitzone2")
-Hitzone3 = NodePath("Hitzone3")
-Hitzone4 = NodePath("Hitzone4")
 
 [node name="Background" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1281.0
-offset_bottom = 721.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_fvtre")
 
 [node name="LevelName" type="Label" parent="."]
@@ -43,10 +40,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 266.0
-offset_top = -14.0
-offset_right = 657.0
-offset_bottom = 123.0
+offset_left = 249.0
+offset_top = 3.0
+offset_right = 640.0
+offset_bottom = 140.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 text = "Default"

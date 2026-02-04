@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Globalization;
 
 public partial class ScoreManager : Node
 {
@@ -41,7 +42,7 @@ public partial class ScoreManager : Node
 	public void BlockMissed()
 	{
 		multiplier =  1.0;
-		MultiplierLabel.Text = multiplier.ToString();
+		MultiplierLabel.Text = multiplier.ToString(CultureInfo.InvariantCulture);
 	}
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

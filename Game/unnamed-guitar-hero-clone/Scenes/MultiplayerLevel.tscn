@@ -43,18 +43,25 @@ one_shot = true
 script = ExtResource("3_tjf07")
 
 [node name="Score" type="Label" parent="ScoreManager"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 210.0
-offset_top = 87.0
-offset_right = 210.0
-offset_bottom = 87.0
+anchors_preset = -1
+anchor_right = 0.14921875
+anchor_bottom = 0.15277776
+offset_left = 207.0
+offset_right = 229.0
+offset_bottom = 1.5258789e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
-text = "Test"
+text = "Score"
 metadata/_edit_use_anchors_ = true
+
+[node name="Multiplier" type="Label" parent="ScoreManager"]
+offset_left = 250.0
+offset_top = 100.0
+offset_right = 450.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 35
+text = "Multiplier"
 
 [node name="BlockSpawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_avoqa")

@@ -67,7 +67,9 @@ public partial class MultiplayerLevel : Control
 	{
 		
 		var label = GetNode<Label>("ScoreManager/Score");
-		label.Position = new Vector2(840,87);
+		var multiplier = GetNode<Label>("ScoreManager/Multiplier");
+		label.Position = new Vector2(850,0);
+		multiplier.Position = new Vector2(850, 100);
 	}
 	public List<string> LoadFile(string file)
 	{
