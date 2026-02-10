@@ -14,7 +14,7 @@ _data = {
 }
 point_count = 1
 
-[node name="LevelScreen" type="Control"]
+[node name="LevelScreen" type="Control" node_paths=PackedStringArray("Hitzone1", "Hitzone2", "Hitzone3", "Hitzone4")]
 layout_mode = 3
 anchor_right = 0.819
 anchor_bottom = 1.651
@@ -25,6 +25,10 @@ grow_vertical = 2
 script = ExtResource("1_00ksh")
 TapBlockScene = ExtResource("2_x353h")
 HoldBlockScene = ExtResource("3_84cs6")
+Hitzone1 = NodePath("Hitzone")
+Hitzone2 = NodePath("Hitzone2")
+Hitzone3 = NodePath("Hitzone3")
+Hitzone4 = NodePath("Hitzone4")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
