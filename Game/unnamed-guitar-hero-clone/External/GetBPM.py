@@ -1,39 +1,37 @@
 import librosa
 import json
 import sys
-from pathlib import Path
 
-def analyze_bpm(audio_path):
-    # Load audio (mono=True ensures y is 1D)
-    y, sr = librosa.load(audio_path, mono=True)
-    
-    # Detect tempo (returns a float now)
-    tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
-    
-    # Ensure tempo is float
-    if hasattr(tempo, "__len__"):
-        tempo = float(tempo[0])
-    
-    return round(float(tempo), 2)
+def analyze_beats(audio_path, beats_per_bar=4):
+    # Load audio
+    y, sr = librosa.load(audio_path, sr=None)
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python GetBPM.py <audiofile>")
-        return
+    # Beat tracking
+    tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
 
-    audio_file = Path(sys.argv[1])
-    bpm = analyze_bpm(audio_file)
+    # Convert frames to time (seconds)
+    beat_times = librosa.frames_to_time(beat_frames, sr=sr)
 
-    output = {
-        "file": audio_file.name,
-        "bpm": bpm
+    # ---- BAR DETECTION (downbeats) ----
+    # Assume constant meter (default: 4/4)
+    bar_frames = beat_frames[::beats_per_bar]
+    bar_times = beat_times[::beats_per_bar]
+
+    return {
+        "tempo_bpm": float(tempo.item()),  
+        "beats_per_bar": beats_per_bar,
+        "beat_frames": beat_frames.tolist(),
+        "beat_times_seconds": beat_times.tolist(),
+        "bar_frames": bar_frames.tolist(),
+        "bar_times_seconds": bar_times.tolist()
     }
 
-    output_path = audio_file.with_suffix(".json")
-    with open(output_path, "w") as f:
-        json.dump(output, f, indent=2)
-
-    print(f"BPM: {bpm}")
-
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) < 2:
+        print("Usage: python beat_analysis.py <audiofile>")
+        sys.exit(1)
+
+    audio_file = sys.argv[1]
+    result = analyze_beats(audio_file)
+
+    print(json.dumps(result, indent=2))
