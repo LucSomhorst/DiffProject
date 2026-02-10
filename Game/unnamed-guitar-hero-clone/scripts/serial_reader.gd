@@ -16,17 +16,27 @@ func _ready():
 	serial = GdSerial.new()
 	serial.set_port(port_name)
 	serial.set_baud_rate(baud_rate)
-	serial.set_timeout(10) # VERY small timeout
+	serial.set_timeout(10)
+
+	var ports = serial.list_ports()
+
+	if port_name not in ports:
+			push_warning("Serial port not found: " + port_name)
+			emit_signal("serial_disconnected")
+			return
 
 	if not serial.open():
-		push_error("Failed to open serial port: " + port_name)
+		push_warning("Could not open serial port: " + port_name)
+		emit_signal("serial_disconnected")
 		return
 
-	print("✅ Serial port opened")
+	print("Serial connected:", port_name)
 	emit_signal("serial_connected")
 
 	running = true
 	_start_read_loop()
+
+
 
 func _start_read_loop():
 	_read_loop()
@@ -76,5 +86,5 @@ func _exit_tree():
 	running = false
 	if serial and serial.is_open():
 		serial.close()
-		print("🔌 Serial port closed")
+		print("Serial port closed")
 		emit_signal("serial_disconnected")

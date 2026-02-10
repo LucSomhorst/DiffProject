@@ -5,6 +5,8 @@
     <RootNamespace>UnnamedGuitarHeroClone</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="scripts\serial_reader.gd" />
+    <Content Include="scripts\serial_reader.gd.uid" />
     <Content Include="settings.cfg" />
   </ItemGroup>
   <ItemGroup>

@@ -57,32 +57,6 @@ public partial class Hitzone : Area2D
 	}
 
 	public void SetKey(string newKey)
-	public void ButtonPressed()
-	{
-		if (_enteredBlock != null)
-		{
-			_enteredBlock.OnHit(this);
-			scoreManager.AddPoint();
-			if (_enteredBlock == null){
-				_visual.Color = _defaultColor;
-			}
-		}
-		else
-		{
-			GD.Print("❌ Miss!");
-		}
-	}
-
-	public void ButtonReleased()
-	{
-		if (_enteredBlock != null)
-		{
-			_enteredBlock.OnHoldEnd(this);
-			_visual.Color = _defaultColor;
-		}
-	}
-	
-	public override void _Input(InputEvent @event)
 	{
 		if (Enum.TryParse(newKey, out Key parsedKey))
 		{
@@ -127,6 +101,10 @@ public partial class Hitzone : Area2D
 
 			pressed = joypadEvent.Pressed;
 		}
+		else if (@event is InputEventSerial serialEvent)
+		{
+			pressed = serialEvent.Pressed;
+		}
 		else
 		{
 			return;
@@ -137,19 +115,44 @@ public partial class Hitzone : Area2D
 			return;
 
 		_isPressed = pressed;
-		
+
 		if (pressed)
 		{
-			ButtonPressed();
+			if (_enteredBlock != null)
+			{
+				_counting = true;
+				_pressTime = Time.GetTicksMsec();
+				ButtonPress();
+			}
+		}
+		else
+		{
+			if (_counting)
+			{
+				double heldMs = Time.GetTicksMsec() - _pressTime;
+				double heldSeconds = heldMs / 1000.0;
+
+				_counting = false;
+				ButtonRelease(heldSeconds);
+			}
 		}
 	}
 
-	private void ButtonPress()
+	public void ButtonPress()
 	{
 		GD.Print("Button press");
 		if (_enteredBlock is not null)
 		{
-			ButtonReleased();
+			if (_enteredBlock.GetType() == typeof(HoldBlock))
+			{
+				var _holdBlock = (HoldBlock)_enteredBlock;
+				_holdBlock.OnHold(this);
+			}
+			else
+			{
+				_enteredBlock.OnHit();
+				OnHit(_enteredBlock);
+			}
 		}
 		else
 		{
@@ -157,7 +160,7 @@ public partial class Hitzone : Area2D
 		}
 	}
 
-	private void ButtonRelease(double timeHeld)
+	public void ButtonRelease(double timeHeld)
 	{
 		if (_enteredBlock is HoldBlock)
 		{
