@@ -8,6 +8,11 @@ public partial class LevelScreen : Control
 	[Export] public PackedScene TapBlockScene { get; set; }
 	[Export] public PackedScene HoldBlockScene { get; set; }
 
+	[Export] public Hitzone Hitzone1 {get; set; }
+	[Export] public Hitzone Hitzone2 {get; set; }
+	[Export] public Hitzone Hitzone3 {get; set; }
+	[Export] public Hitzone Hitzone4 {get; set; }
+
 	[Signal]
 	public delegate void EndGameEventHandler();
 	private int blocksSent = 0;
@@ -26,6 +31,24 @@ public partial class LevelScreen : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		ConfigFile ConfigLocal = new ConfigFile();
+		ConfigLocal.Load("res://settings.cfg");
+		if (Hitzone1 != null && Hitzone2 != null && Hitzone3 != null && Hitzone4 != null)
+		{
+			Hitzone1.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone1").ToString());
+			Hitzone2.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone2").ToString());
+			Hitzone3.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone3").ToString());
+			Hitzone4.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone4").ToString());
+			Hitzone1.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller1").ToString());
+			Hitzone2.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller2").ToString());
+			Hitzone3.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller3").ToString());
+			Hitzone4.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller4").ToString());
+		}
+		else
+		{
+			GD.Print("cant load");
+		}
+		base._Ready();
 		var serialReader = GetNode<Node>("SerialReader");
 		hitzone1 = (Hitzone)GetNode("Hitzone1");
 		hitzone2 = (Hitzone)GetNode("Hitzone2");
