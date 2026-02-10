@@ -22,6 +22,11 @@ public partial class LevelScreen : Control
 	private bool followPattern;
 	private List<string> patternToRun = new();
 	private Timer blockTimer;
+	private Hitzone hitzone1;
+	private Hitzone hitzone2;
+	private Hitzone hitzone3;
+	private Hitzone hitzone4;
+	private bool[] buttonPressed = new []{false,false,false,false};
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -44,6 +49,40 @@ public partial class LevelScreen : Control
 			GD.Print("cant load");
 		}
 		base._Ready();
+		var serialReader = GetNode<Node>("SerialReader");
+		hitzone1 = (Hitzone)GetNode("Hitzone1");
+		hitzone2 = (Hitzone)GetNode("Hitzone2");
+		hitzone3 = (Hitzone)GetNode("Hitzone3");
+		hitzone4 = (Hitzone)GetNode("Hitzone4");
+		serialReader.Connect(
+			"data_received",
+			new Callable(this, nameof(OnDataReceived))
+		);
+	}
+
+	
+	private void OnDataReceived(string data)
+	{
+		GD.Print(data);
+		switch (data)
+		{
+			case "btn1":
+				if (buttonPressed[0]) hitzone1.ButtonPressed(); else  hitzone1.ButtonReleased();
+				buttonPressed [0] = !buttonPressed[0];
+				break;
+			case "btn2":
+				if (buttonPressed[1]) hitzone2.ButtonPressed(); else  hitzone2.ButtonReleased();
+				buttonPressed [1] = !buttonPressed[1];
+				break;
+			case "btn3":
+				if (buttonPressed[2]) hitzone3.ButtonPressed(); else  hitzone3.ButtonReleased();
+				buttonPressed[2] = !buttonPressed[2];
+				break;
+			case "btn4":
+				if (buttonPressed[3]) hitzone4.ButtonPressed(); else  hitzone4.ButtonReleased();
+				buttonPressed[3] = !buttonPressed[3];
+				break;
+		}
 	}
 	
 	public void Constructor(string levelPath)
@@ -138,7 +177,6 @@ public partial class LevelScreen : Control
 				.Select(f => path + f.Replace(".txt", ""))
 				.ToArray();
 			return files;
-		
 	}
 	
 	private void SpawnBlock()
