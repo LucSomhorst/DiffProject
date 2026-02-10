@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnncrkm5n0jaa"]
+[gd_scene load_steps=4 format=3 uid="uid://mp2my20gmhs2"]
 
-[ext_resource type="Script" uid="uid://dcugc6gr8x8y8" path="res://scripts/CustomLevelButton.cs" id="1_6vt11"]
+[ext_resource type="Script" path="res://scripts/CustomLevelButton.cs" id="1_6vt11"]
 [ext_resource type="Theme" uid="uid://u2ki7ed1tlhf" path="res://Themes/MenuButtonTextTheme.tres" id="2_tncvt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bp8r"]

@@ -8,6 +8,10 @@ public partial class MultiplayerLevel : Control
 	private ConfigFile ConfigLocal = new();
 	[Export] public PackedScene TapBlockScene { get; set; }
 	[Export] public PackedScene HoldBlockScene { get; set; }
+	[Export] public Hitzone Hitzone1 {get; set; }
+	[Export] public Hitzone Hitzone2 {get; set; }
+	[Export] public Hitzone Hitzone3 {get; set; }
+	[Export] public Hitzone Hitzone4 {get; set; }
 	private int blocksSent = 0;
 	private int blocksToLevel = 10;
 	private int level = 1;
@@ -47,20 +51,25 @@ public partial class MultiplayerLevel : Control
 	}
 	public void ChangeKeyBindForMP()
 	{
-		var firstHitzone = GetNode<Hitzone1>("Hitzone1");
-		var secondHitzone = GetNode<Hitzone2>("Hitzone2");
-		var thirdHitzone = GetNode<Hitzone3>("Hitzone3");
-		var fourthHitzone = GetNode<Hitzone4>("Hitzone4");
-		firstHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone1").ToString();
-		secondHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone2").ToString();
-		thirdHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone3").ToString();
-		fourthHitzone.HitKey = ConfigLocal.GetValue("Keybinds", "Player2Hitzone4").ToString();
+		ConfigFile ConfigLocal = new ConfigFile();
+		ConfigLocal.Load("res://settings.cfg");
+		Hitzone1.SetKey(ConfigLocal.GetValue("Keybinds", "Player2Hitzone1").ToString());
+		Hitzone2.SetKey(ConfigLocal.GetValue("Keybinds", "Player2Hitzone2").ToString());
+		Hitzone3.SetKey(ConfigLocal.GetValue("Keybinds", "Player2Hitzone3").ToString());
+		Hitzone4.SetKey(ConfigLocal.GetValue("Keybinds", "Player2Hitzone4").ToString());
+		Hitzone1.SetButton(ConfigLocal.GetValue("Keybinds", "Player2Controller1").ToString());
+		Hitzone2.SetButton(ConfigLocal.GetValue("Keybinds", "Player2Controller2").ToString());
+		Hitzone3.SetButton(ConfigLocal.GetValue("Keybinds", "Player2Controller3").ToString());
+		Hitzone4.SetButton(ConfigLocal.GetValue("Keybinds", "Player2Controller4").ToString());
+		base._Ready();
 	}
 	public void ChangeLabelPostitionForMP()
 	{
 		
 		var label = GetNode<Label>("ScoreManager/Score");
-		label.Position = new Vector2(840,87);
+		var multiplier = GetNode<Label>("ScoreManager/Multiplier");
+		label.Position = new Vector2(850,0);
+		multiplier.Position = new Vector2(850, 100);
 	}
 	public List<string> LoadFile(string file)
 	{

@@ -1,14 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccko2l5r203b7"]
+[gd_scene load_steps=8 format=3 uid="uid://ccko2l5r203b7"]
 
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="1_f345m"]
-[ext_resource type="Script" uid="uid://cudbirsyw8vg6" path="res://Scripts/MultiplayerLevel.cs" id="1_lxv4y"]
-[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://Scenes/TapBlock.tscn" id="2_tjf07"]
-[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://Scenes/HoldBlock.tscn" id="3_qgfql"]
-[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://Scripts/ScoreManager.cs" id="3_tjf07"]
-[ext_resource type="PackedScene" uid="uid://cb6a6604bpran" path="res://Scenes/Hitzone1.tscn" id="5_qtn8k"]
-[ext_resource type="PackedScene" uid="uid://bgmvm6mh5fbya" path="res://Scenes/Hitzone2.tscn" id="6_qgfql"]
-[ext_resource type="PackedScene" uid="uid://dimm7yj8lt50a" path="res://Scenes/Hitzone3.tscn" id="7_hccg8"]
-[ext_resource type="PackedScene" uid="uid://mg5e5sdaiid1" path="res://Scenes/Hitzone4.tscn" id="8_myuc5"]
+[ext_resource type="Script" uid="uid://cudbirsyw8vg6" path="res://scripts/MultiplayerLevel.cs" id="1_lxv4y"]
+[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/TapBlock.tscn" id="2_tjf07"]
+[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_qgfql"]
+[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="3_tjf07"]
+[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://scenes/Hitzone.tscn" id="6_4ncq8"]
 
 [sub_resource type="Curve2D" id="Curve2D_avoqa"]
 _data = {
@@ -16,7 +13,7 @@ _data = {
 }
 point_count = 1
 
-[node name="MulitplayerLevel" type="Control"]
+[node name="MulitplayerLevel" type="Control" node_paths=PackedStringArray("Hitzone1", "Hitzone2", "Hitzone3", "Hitzone4")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +23,10 @@ grow_vertical = 2
 script = ExtResource("1_lxv4y")
 TapBlockScene = ExtResource("2_tjf07")
 HoldBlockScene = ExtResource("3_qgfql")
+Hitzone1 = NodePath("Hitzone")
+Hitzone2 = NodePath("Hitzone2")
+Hitzone3 = NodePath("Hitzone3")
+Hitzone4 = NodePath("Hitzone4")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -42,44 +43,35 @@ one_shot = true
 script = ExtResource("3_tjf07")
 
 [node name="Score" type="Label" parent="ScoreManager"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 210.0
-offset_top = 87.0
-offset_right = 210.0
-offset_bottom = 87.0
+anchors_preset = -1
+anchor_right = 0.14921875
+anchor_bottom = 0.15277776
+offset_left = 207.0
+offset_right = 229.0
+offset_bottom = 1.5258789e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
-text = "Test"
+text = "Score"
 metadata/_edit_use_anchors_ = true
 
-[node name="Hitzone1" parent="." instance=ExtResource("5_qtn8k")]
-position = Vector2(93, 602)
-scale = Vector2(1.2, 1.2)
-
-[node name="Hitzone2" parent="." instance=ExtResource("6_qgfql")]
-position = Vector2(262, 602)
-scale = Vector2(1.2, 1.2)
-
-[node name="Hitzone3" parent="." instance=ExtResource("7_hccg8")]
-position = Vector2(406, 603)
-scale = Vector2(1.2, 1.2)
-
-[node name="Hitzone4" parent="." instance=ExtResource("8_myuc5")]
-position = Vector2(559, 601)
-scale = Vector2(1.2, 1.2)
+[node name="Multiplier" type="Label" parent="ScoreManager"]
+offset_left = 250.0
+offset_top = 100.0
+offset_right = 450.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 35
+text = "Multiplier"
 
 [node name="BlockSpawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_avoqa")
 
 [node name="BlockSpawnLocation1" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(92, 216.99997)
+position = Vector2(100, 217)
 rotation = 1.13583
 
 [node name="BlockSpawnLocation2" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(263.99997, 221.99995)
+position = Vector2(250, 222)
 rotation = 2.27166
 
 [node name="BlockSpawnLocation3" type="PathFollow2D" parent="BlockSpawn"]
@@ -87,8 +79,24 @@ position = Vector2(400, 219.99998)
 rotation = 2.27166
 
 [node name="BlockSpawnLocation4" type="PathFollow2D" parent="BlockSpawn"]
-position = Vector2(557.99994, 225.99997)
+position = Vector2(550, 226)
 rotation = -2.8757
+
+[node name="Hitzone" parent="." instance=ExtResource("6_4ncq8")]
+position = Vector2(100, 600)
+scale = Vector2(0.5, 1)
+
+[node name="Hitzone2" parent="." instance=ExtResource("6_4ncq8")]
+position = Vector2(250, 600)
+scale = Vector2(0.5, 1)
+
+[node name="Hitzone3" parent="." instance=ExtResource("6_4ncq8")]
+position = Vector2(400, 600)
+scale = Vector2(0.5, 1)
+
+[node name="Hitzone4" parent="." instance=ExtResource("6_4ncq8")]
+position = Vector2(550, 600)
+scale = Vector2(0.5, 1)
 
 [connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]

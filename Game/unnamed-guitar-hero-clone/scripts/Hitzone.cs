@@ -3,22 +3,26 @@ using System;
 
 public partial class Hitzone : Area2D
 {
-	[Export] public String HitKey = "Space"; // toets waarop gedrukt moet worden
 	private Key _key;
-	
+	private JoyButton _button;
+
 	private ColorRect _visual;
 	private Color _defaultColor = new Color(0.2f, 1f, 0.2f, 0.3f);
 	private Color _hitColor = new Color(1f, 1f, 1f, 0.8f);
-	
+
 	ScoreManager scoreManager;
 	private BlockBase _enteredBlock = null;
+	
+	private bool _isPressed = false;
+	private bool _counting = false;
+	private double _pressTime = 0.0;
 
 	public override void _Ready()
 	{
 		_visual = GetNode<ColorRect>("ColorRect");
 		_visual.Color = _defaultColor;
 		scoreManager = GetNode<ScoreManager>("../ScoreManager");
-		
+
 		// Signalen verbinden (als blocks binnenkomen of weggaan)
 		BodyEntered += OnBlockEntered;
 		BodyExited += OnBlockExited;
@@ -31,10 +35,10 @@ public partial class Hitzone : Area2D
 			// markeer dat de block in de zone is
 			_enteredBlock = block;
 			block.IsInsideHitzone = true;
-			
+			_enteredBlock.BlockMissed += OnMiss;
+			_enteredBlock.BlockHit += OnHit;
 			// Verander kleur voor feedback
 			_visual.Color = _hitColor;
-			//GD.Print("🎯 Block in hitzone!");
 		}
 	}
 
@@ -45,62 +49,151 @@ public partial class Hitzone : Area2D
 			// markeer dat de block eruit is
 			_enteredBlock = null;
 			block.IsInsideHitzone = false;
-			
+
 			// Reset kleur
 			_visual.Color = _defaultColor;
 			//GD.Print("⬅️ Block left hitzone");
 		}
 	}
+
+	public void SetKey(string newKey)
+	public void ButtonPressed()
+	{
+		if (_enteredBlock != null)
+		{
+			_enteredBlock.OnHit(this);
+			scoreManager.AddPoint();
+			if (_enteredBlock == null){
+				_visual.Color = _defaultColor;
+			}
+		}
+		else
+		{
+			GD.Print("❌ Miss!");
+		}
+	}
+
+	public void ButtonReleased()
+	{
+		if (_enteredBlock != null)
+		{
+			_enteredBlock.OnHoldEnd(this);
+			_visual.Color = _defaultColor;
+		}
+	}
 	
 	public override void _Input(InputEvent @event)
 	{
-		// Alleen reageren als het blok nog niet geraakt is
-		if (!(@event is InputEventKey keyEvent)) return;
-		
-		if (Enum.TryParse<Key>(HitKey, out Key parsedKey))
+		if (Enum.TryParse(newKey, out Key parsedKey))
 		{
 			_key = parsedKey;
 		}
 		else
 		{
-			GD.PrintErr($"Invalid key in config: {HitKey}. Using default Space.");
+			GD.PrintErr($"Invalid key in config: {newKey}. Using default Space.");
 			_key = Key.Space;
 		}
-		
-		// Check of de speler op de juiste toets drukt (bijv. spatie)
-		if (keyEvent.Pressed && keyEvent.Keycode == _key)
+	}
+
+	public void SetButton(string newButton)
+	{
+		if (Enum.TryParse(newButton, out JoyButton parsedButton))
 		{
-			if (_enteredBlock != null)
-			{
-				_enteredBlock.OnHit(this);
-				scoreManager.AddPoint();
-				if (_enteredBlock == null){
-					_visual.Color = _defaultColor;
-				}
-			}
-			else
-			{
-				GD.Print("❌ Miss!");
-			}
+			_button = parsedButton;
 		}
-		
-		// Detect key release (voor HoldBlock)
-		if (!keyEvent.Pressed && keyEvent.Keycode == _key)
+		else
 		{
-			if (_enteredBlock != null)
-			{
-				_enteredBlock.OnHoldEnd(this);
-				_visual.Color = _defaultColor;
-			}
+			GD.PrintErr($"Invalid key in config: {newButton}. Using default Space.");
+			_button = JoyButton.A;
 		}
+	}
+
+
+	public override void _Input(InputEvent @event)
+	{
+		bool pressed;
+
+		if (@event is InputEventKey keyEvent)
+		{
+			if (keyEvent.Keycode != _key || keyEvent.Echo)
+				return;
+
+			pressed = keyEvent.Pressed;
+		}
+		else if (@event is InputEventJoypadButton joypadEvent)
+		{
+			if (joypadEvent.ButtonIndex != _button)
+				return;
+
+			pressed = joypadEvent.Pressed;
+		}
+		else
+		{
+			return;
+		}
+
+		// Debounce
+		if (pressed == _isPressed)
+			return;
+
+		_isPressed = pressed;
+		
+		if (pressed)
+		{
+			ButtonPressed();
+		}
+	}
+
+	private void ButtonPress()
+	{
+		GD.Print("Button press");
+		if (_enteredBlock is not null)
+		{
+			ButtonReleased();
+		}
+		else
+		{
+			OnMiss();
+		}
+	}
+
+	private void ButtonRelease(double timeHeld)
+	{
+		if (_enteredBlock is HoldBlock)
+		{
+			var holdBlock = (HoldBlock)_enteredBlock;
+			holdBlock.OnHoldEnd(timeHeld);
+		}
+	}
+
+
+	private void OnHit(BlockBase sender)
+	{
+		var blockType = sender.GetType();
+		if (blockType == typeof(TapBlock))
+		{
+			scoreManager.BlockHit();
+		}
+		else if (blockType == typeof(HoldBlock))
+		{
+			scoreManager.LongBlockHit();
+		}
+	}
+
+	private void OnMiss()
+	{
+		scoreManager.BlockMissed();
 	}
 	
 	public override void _Process(double delta)
 	{
-		// Als block in de zone zit -> hold check
-		if (_enteredBlock != null)
+		if (_enteredBlock is not null)
 		{
-			_enteredBlock.OnHold(this);
+			if (_enteredBlock.GetType() == typeof(HoldBlock))
+			{
+				var _holdBlock = (HoldBlock)_enteredBlock;
+				_holdBlock.OnHold(this);
+			}
 		}
 	}
 }
