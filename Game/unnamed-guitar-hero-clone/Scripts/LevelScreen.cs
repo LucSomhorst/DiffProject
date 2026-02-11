@@ -7,14 +7,21 @@ public partial class LevelScreen : Control
 {
 	[Export] public PackedScene TapBlockScene { get; set; }
 	[Export] public PackedScene HoldBlockScene { get; set; }
+	
+	[Export] public SaveManager SaveManager { get; set; }
+	
+	[Export] public ScoreManager ScoreManager { get; set; }
 
 	[Export] public Hitzone Hitzone1 {get; set; }
 	[Export] public Hitzone Hitzone2 {get; set; }
 	[Export] public Hitzone Hitzone3 {get; set; }
 	[Export] public Hitzone Hitzone4 {get; set; }
+	[Export] public PackedScene GameOverPopupScene;
 
 	[Signal]
 	public delegate void EndGameEventHandler();
+
+	private string levelName;
 	private int blocksSent = 0;
 	private int blocksToLevel = 10;
 	private int level = 1;
@@ -22,11 +29,18 @@ public partial class LevelScreen : Control
 	private bool followPattern;
 	private List<string> patternToRun = new();
 	private Timer blockTimer;
+	private float StartTime; 
 	private bool[] buttonPressed = new []{false,false,false,false};
+	private ScoreManager scoreManager;
+	private SaveManager saveManager;
+	private Label timeLabel;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		scoreManager = ScoreManager;
+		saveManager = SaveManager;
+		timeLabel = (Label)GetNode("TimeLabel");
 		ConfigFile ConfigLocal = new ConfigFile();
 		ConfigLocal.Load("res://settings.cfg");
 		if (Hitzone1 != null && Hitzone2 != null && Hitzone3 != null && Hitzone4 != null)
@@ -45,17 +59,17 @@ public partial class LevelScreen : Control
 			GD.Print("cant load");
 		}
 		base._Ready();
+		StartTime = Time.GetTicksMsec();
 		var serialReader = GetNode<Node>("SerialReader");
 		serialReader.Connect(
 			"data_received",
 			new Callable(this, nameof(OnDataReceived))
 		);
 	}
-
+ 
 	
 	private void OnDataReceived(string data)
 	{
-		GD.Print(data);
 		var serialInput = new InputEventSerial();
 		serialInput.Value = data;
 		switch (data)
@@ -89,7 +103,7 @@ public partial class LevelScreen : Control
 
 		// Level name
 		GetNode<Label>("LevelName").Text = values[0];
-
+		levelName =  values[0];
 		// Block timer
 		blockTimer = GetNode<Timer>("BlockTimer");
 		var timerValue  = Convert.ToDouble(values[1]);
@@ -118,7 +132,36 @@ public partial class LevelScreen : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		double timeSpentSeconds;
+		float timeSpent = 0;
+		if (!blockTimer.IsStopped())
+		{
+			timeSpentSeconds = Math.Ceiling((Time.GetTicksMsec() - StartTime) / 1000.0);
+		}
+		else
+		{
+			timeSpentSeconds = 0;
+		}
+		if (timeSpentSeconds >= 300)
+		{
+			blockTimer.Stop();
+
+			GameOverPopup endGamePopup = GameOverPopupScene.Instantiate<GameOverPopup>();
+			AddChild(endGamePopup);
+			
+			endGamePopup.GameOver += GameOver;
+			endGamePopup.score = scoreManager.Score;
+			endGamePopup.time = timeSpentSeconds;
+			endGamePopup.MoveToFront();
+
+		}
+		timeLabel.Text = timeSpentSeconds.ToString();
+	}
+
+	private void GameOver(string name, int score, double time)
+	{
+		saveManager.SaveScore(name,levelName,score, time);
+		StopGame();
 	}
 	
 	public List<string> LoadFile(string file)
@@ -288,7 +331,6 @@ public partial class LevelScreen : Control
 	
 	private void LoadPattern(string patternName)
 	{
-		GD.Print(patternName);
 		RandomNumberGenerator rng = new RandomNumberGenerator();
 		var rngNumber = rng.RandiRange(1,4);
 		var file = "res://Patterns/" + patternName + ".txt";

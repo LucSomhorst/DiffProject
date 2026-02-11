@@ -103,8 +103,6 @@ public partial class LevelSelect : Control
 
 	private void LevelSelected(string levelPath)
 	{
-		//EmitSignalStartLevel(levelPath);
-		//GD.Print("Level Selected");
 		_popup = GetNode<Popup>("Popup");
 		_popup.LevelPath = levelPath;
 		var container = (GameContainer)GetParent();

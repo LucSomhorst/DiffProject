@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://45jmhwbimkqs"]
+[gd_scene load_steps=5 format=3 uid="uid://45jmhwbimkqs"]
 
-[ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://Scripts/ScoreboardScreen.cs" id="1_yx26b"]
+[ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://scripts/ScoreboardScreen.cs" id="1_yx26b"]
+[ext_resource type="PackedScene" uid="uid://bbcvegqvwiqjs" path="res://scenes/LeaderBoardLine.tscn" id="2_4xi4b"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_qwao4"]
 [ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Themes/InnerMenuTheme.tres" id="3_agcct"]
 
-[node name="ScoreboardScreen" type="MarginContainer"]
+[node name="ScoreboardScreen" type="MarginContainer" node_paths=PackedStringArray("scoreboardContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +16,8 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 50
 script = ExtResource("1_yx26b")
+scoreboardContainer = NodePath("MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/ScoreList")
+LeaderBoardLine = ExtResource("2_4xi4b")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -78,32 +81,33 @@ text = "Level"
 layout_mode = 2
 text = "Time"
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_direction = 2
+[node name="ScoreList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 40
-columns = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/ScoreList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/ScoreList/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Name"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/ScoreList/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Score"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/ScoreList/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Level"
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/GridContainer"]
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/ScoreList/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Time"
