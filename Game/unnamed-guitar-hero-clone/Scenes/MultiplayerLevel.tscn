@@ -7,6 +7,20 @@
 [ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="3_tjf07"]
 [ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://scenes/Hitzone.tscn" id="6_4ncq8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ncq8"]
+bg_color = Color(0.101960786, 0.12156863, 0.18039216, 0.92156863)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.819608, 0.458824, 0.717647, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.819608, 0.458824, 0.717647, 1)
+shadow_size = 5
+
 [sub_resource type="Curve2D" id="Curve2D_avoqa"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 628, 221)
@@ -33,6 +47,7 @@ Hitzone4 = NodePath("Hitzone4")
 layout_mode = 0
 offset_right = 635.0
 offset_bottom = 721.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ncq8")
 
 [node name="BlockTimer" type="Timer" parent="." unique_id=189199948]
 
