@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_n6ukm"]
 [ext_resource type="Theme" uid="uid://dsh3vsyfgtpy3" path="res://Themes/MenuTextTheme.tres" id="3_asj4v"]
 [ext_resource type="Theme" uid="uid://u2ki7ed1tlhf" path="res://Themes/MenuButtonTextTheme.tres" id="5_aljbi"]
-[ext_resource type="Script" uid="uid://blu4fl0jsnj23" path="res://scripts/BpmAnalyzer.cs" id="6_4720k"]
+[ext_resource type="Script" uid="uid://c1piqkj2c7k0i" path="res://scripts/BpmAnalyzer.cs" id="6_4720k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dey5f"]
 content_margin_left = 5.0
@@ -325,12 +325,9 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="UploadContainer" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Upload song/MarginContainer/MarginContainer" node_paths=PackedStringArray("fileDialog", "bpmLabel", "selectButton")]
+[node name="UploadContainer" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer/Upload song/MarginContainer/MarginContainer"]
 layout_mode = 2
 script = ExtResource("6_4720k")
-fileDialog = NodePath("FileDialog")
-bpmLabel = NodePath("Label")
-selectButton = NodePath("Button")
 
 [node name="Label" type="Label" parent="MainWindowMargin/VBoxContainer/TabContainer/Upload song/MarginContainer/MarginContainer/UploadContainer"]
 layout_mode = 2

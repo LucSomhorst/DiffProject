@@ -8,14 +8,20 @@ public partial class ScoreManager : Node
 	int score;
 	private Label scoreLabel;
 	private Label MultiplierLabel;
-	
+
+	public int Score
+	{
+		get => score;
+		set => score = value;
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		score = 0;
+		Score = 0;
 		scoreLabel = GetNode<Label>("Score");
 		MultiplierLabel = GetNode<Label>("Multiplier");
-		scoreLabel.Text = score.ToString();
+		scoreLabel.Text = Score.ToString();
 	}
 
 	public void BlockHit()
@@ -35,8 +41,8 @@ public partial class ScoreManager : Node
 	public void AddScore(int addScore)
 	{
 		double scoreToAdd =  addScore * multiplier;
-		score += Convert.ToInt32(scoreToAdd);
-		scoreLabel.Text = score.ToString();
+		Score += Convert.ToInt32(scoreToAdd);
+		scoreLabel.Text = Score.ToString();
 	}
 
 	public void BlockMissed()
