@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpnakkn3c27c6"]
+[gd_scene format=3 uid="uid://bpnakkn3c27c6"]
 
 [ext_resource type="Script" uid="uid://c5ei11esrfemx" path="res://scripts/MenuScreen.cs" id="1_33mj8"]
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_eeil4"]
 [ext_resource type="Texture2D" uid="uid://bpfsd2xen6qls" path="res://Assets/Beat Rush Logo Transparant.png" id="3_1lk3f"]
 
-[node name="MenuScreen" type="Control"]
+[node name="MenuScreen" type="Control" unique_id=817219003]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ size_flags_vertical = 4
 theme = ExtResource("1_eeil4")
 script = ExtResource("1_33mj8")
 
-[node name="Logo" type="TextureRect" parent="."]
+[node name="Logo" type="TextureRect" parent="." unique_id=478636760]
 custom_minimum_size = Vector2(600, 300)
 layout_mode = 1
 anchors_preset = 8
@@ -34,9 +34,9 @@ texture = ExtResource("3_1lk3f")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo" unique_id=700600904]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1839709551]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -52,22 +52,22 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Button5" type="Button" parent="VBoxContainer"]
+[node name="Button5" type="Button" parent="VBoxContainer" unique_id=1604121417]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Start Game"
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=589673243]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Settings"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=337932425]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Leaderboards"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=992690780]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Exit"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlq428jdxe8u4"]
+[gd_scene format=3 uid="uid://dlq428jdxe8u4"]
 
 [ext_resource type="Script" uid="uid://dgtnbecfht6vu" path="res://scripts/GameOverPopup.cs" id="1_isuky"]
 

@@ -7,8 +7,8 @@ public partial class Hitzone : Area2D
 	private JoyButton _button;
 
 	private ColorRect _visual;
-	private Color _defaultColor = new Color(0.2f, 1f, 0.2f, 0.3f);
-	private Color _hitColor = new Color(1f, 1f, 1f, 0.8f);
+	private Color _defaultColor = new Color(0.294f, 0.765f, 0.71f, 0.7f);
+	private Color _hitColor = new Color(0.294f, 0.765f, 0.71f, 1.0f);
 
 	ScoreManager scoreManager;
 	private BlockBase _enteredBlock = null;
