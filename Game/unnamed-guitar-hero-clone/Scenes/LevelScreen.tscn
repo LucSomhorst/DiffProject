@@ -1,16 +1,30 @@
-[gd_scene load_steps=11 format=3 uid="uid://v30pdr6y118y"]
+[gd_scene format=3 uid="uid://v30pdr6y118y"]
 
 [ext_resource type="Script" uid="uid://2agfusotajkk" path="res://scripts/LevelScreen.cs" id="1_00ksh"]
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_2a3rl"]
 [ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/TapBlock.tscn" id="2_x353h"]
 [ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_84cs6"]
-[ext_resource type="PackedScene" uid="uid://o5wytrfa8w6v" path="res://scenes/SaveManager.tscn" id="4_2a3rl"]
-[ext_resource type="PackedScene" uid="uid://dlq428jdxe8u4" path="res://scenes/GameOverPopup.tscn" id="4_84cs6"]
+[ext_resource type="PackedScene" path="res://scenes/SaveManager.tscn" id="4_2a3rl"]
+[ext_resource type="PackedScene" path="res://scenes/GameOverPopup.tscn" id="4_84cs6"]
 [ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="5_cji5a"]
 [ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://scenes/Hitzone.tscn" id="6_016qk"]
 [ext_resource type="PackedScene" uid="uid://dvg8t3sb3wwaf" path="res://scenes/SerialReader.tscn" id="9_6dn54"]
 
 [sub_resource type="Theme" id="Theme_fvtre"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dn54"]
+bg_color = Color(0.101960786, 0.12156863, 0.18039216, 0.92156863)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.819608, 0.458824, 0.717647, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.819608, 0.458824, 0.717647, 1)
+shadow_size = 5
 
 [sub_resource type="Curve2D" id="Curve2D_mn8xq"]
 _data = {
@@ -18,7 +32,7 @@ _data = {
 }
 point_count = 1
 
-[node name="LevelScreen" type="Control" node_paths=PackedStringArray("SaveManager", "ScoreManager", "Hitzone1", "Hitzone2", "Hitzone3", "Hitzone4")]
+[node name="LevelScreen" type="Control" unique_id=775864500 node_paths=PackedStringArray("SaveManager", "ScoreManager", "Hitzone1", "Hitzone2", "Hitzone3", "Hitzone4")]
 layout_mode = 3
 anchor_right = 0.819
 anchor_bottom = 1.651
@@ -46,6 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_fvtre")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6dn54")
 
 [node name="LevelName" type="Label" parent="." unique_id=191162974]
 layout_mode = 1
@@ -84,9 +99,9 @@ rotation = -2.8757
 [node name="StartTimer" type="Timer" parent="." unique_id=1440968675]
 one_shot = true
 
-[node name="SaveManager" parent="." instance=ExtResource("4_2a3rl")]
+[node name="SaveManager" parent="." unique_id=262847088 instance=ExtResource("4_2a3rl")]
 
-[node name="ScoreManager" type="Node" parent="."]
+[node name="ScoreManager" type="Node" parent="." unique_id=827637003]
 script = ExtResource("5_cji5a")
 
 [node name="Score" type="Label" parent="ScoreManager" unique_id=393216949]
@@ -135,7 +150,7 @@ position = Vector2(768, 600)
 [node name="Hitzone4" parent="." unique_id=473550165 instance=ExtResource("6_016qk")]
 position = Vector2(1024, 600)
 
-[node name="TimeLabel" type="Label" parent="."]
+[node name="TimeLabel" type="Label" parent="." unique_id=1999173177]
 layout_mode = 0
 offset_left = 1174.0
 offset_top = 128.0
