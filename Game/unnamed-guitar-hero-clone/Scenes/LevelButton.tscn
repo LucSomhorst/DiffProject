@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvxkvysl21efq"]
+[gd_scene load_steps=3 format=3 uid="uid://cvxkvysl21efq"]
 
+[ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_emfp6"]
 [ext_resource type="Script" uid="uid://c02oy04pn003a" path="res://scripts/LevelButton.cs" id="1_yoeyv"]
 
 [node name="Control" type="MarginContainer"]
@@ -8,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_emfp6")
 script = ExtResource("1_yoeyv")
 
 [node name="PlayLevelButton" type="Button" parent="."]
