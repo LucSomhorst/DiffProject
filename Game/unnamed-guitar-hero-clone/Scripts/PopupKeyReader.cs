@@ -41,6 +41,12 @@ public partial class PopupKeyReader : Popup
 			inputCooldown = 1.0;
 			QueueFree();
 		}
+		else if (@event is InputEventJoypadButton joypadButton && joypadButton.Pressed)
+		{
+			parent.KeyChanged(joypadButton.ButtonIndex.ToString());
+			inputCooldown = 1.0;
+			QueueFree();
+		}
 	}
 	public void Constructor(KeybindLine _parent)
 	{

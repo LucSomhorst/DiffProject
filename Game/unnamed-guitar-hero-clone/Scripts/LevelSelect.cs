@@ -12,6 +12,7 @@ public partial class LevelSelect : Control
 	[Signal]
 	public delegate void ExitBtnEventHandler();
 	
+	private Popup _popup;
 	[Signal]
 	public delegate void StartLevelEventHandler(string levelPath);
 	public override void _Ready()
@@ -102,8 +103,16 @@ public partial class LevelSelect : Control
 
 	private void LevelSelected(string levelPath)
 	{
-		EmitSignalStartLevel(levelPath);
-		GD.Print("Level Selected");
+		//EmitSignalStartLevel(levelPath);
+		//GD.Print("Level Selected");
+		_popup = GetNode<Popup>("Popup");
+		_popup.LevelPath = levelPath;
+		var container = (GameContainer)GetParent();
+		_popup.OpenSingleplayer += container.OpenSingleplayer;
+		_popup.OpenMultiplayer += container.OpenMultiplayer;
+		_popup.PopupCentered();
+		
+		
 	}
 
 	private void OnExitBtnPressed()

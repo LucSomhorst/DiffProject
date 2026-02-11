@@ -12,8 +12,12 @@ config_version=5
 
 config/name="Beat Rush"
 run/main_scene="uid://c36rbmwrgkxhp"
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+InputTracker="*res://scripts/InputTracker.cs"
 
 [display]
 
@@ -23,3 +27,7 @@ window/size/viewport_height=720
 [dotnet]
 
 project/assembly_name="Unnamed Guitar Hero Clone"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdserial/plugin.cfg")
