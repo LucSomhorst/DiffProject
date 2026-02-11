@@ -49,6 +49,20 @@ public partial class MultiplayerLevel : Control
 	{
 		
 	}
+	public void KeyBindForMP()
+	{
+		ConfigFile ConfigLocal = new ConfigFile();
+		ConfigLocal.Load("res://settings.cfg");
+		Hitzone1.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone1").ToString());
+		Hitzone2.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone2").ToString());
+		Hitzone3.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone3").ToString());
+		Hitzone4.SetKey(ConfigLocal.GetValue("Keybinds", "Player1Hitzone4").ToString());
+		Hitzone1.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller1").ToString());
+		Hitzone2.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller2").ToString());
+		Hitzone3.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller3").ToString());
+		Hitzone4.SetButton(ConfigLocal.GetValue("Keybinds", "Player1Controller4").ToString());
+		base._Ready();
+	}
 	public void ChangeKeyBindForMP()
 	{
 		ConfigFile ConfigLocal = new ConfigFile();

@@ -16,6 +16,7 @@ public partial class MultiplayerScreen : Control
 		//List<string> values = LoadFile(LevelFile);
 		var level1 = GetNode<MultiplayerLevel>("MultiplayerLevel");
 		level1.Constructor(levelpath);
+		level1.KeyBindForMP();
 		var level2 = GetNode<MultiplayerLevel>("MultiplayerLevel2");
 		level2.Constructor(levelpath);
 		level2.ChangeKeyBindForMP();
