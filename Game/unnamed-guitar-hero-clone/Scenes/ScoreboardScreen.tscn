@@ -1,9 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://45jmhwbimkqs"]
+[gd_scene load_steps=8 format=3 uid="uid://45jmhwbimkqs"]
 
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_4xi4b"]
 [ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://scripts/ScoreboardScreen.cs" id="1_yx26b"]
-[ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_qwao4"]
-[ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Themes/InnerMenuTheme.tres" id="3_agcct"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccbma"]
+bg_color = Color(0.101961, 0.121569, 0.180392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.294118, 0.764706, 0.709804, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 10
+shadow_color = Color(0.294118, 0.764706, 0.709804, 0.392157)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5djc"]
+bg_color = Color(0.0588235, 0.0784314, 0.0980392, 0.784314)
+corner_radius_top_left = 20
+corner_radius_bottom_left = 20
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xi4b"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.294118, 0.764706, 0.709804, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
+shadow_color = Color(0.294118, 0.764706, 0.709804, 0.784314)
+shadow_size = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1di3c"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.227451, 0.662745, 0.615686, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 20
+shadow_color = Color(0.294118, 0.764706, 0.709804, 1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsw6v"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.109804, 0.172549, 0.329412, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
+shadow_color = Color(0.294118, 0.764706, 0.709804, 0.313726)
+shadow_size = 5
 
 [node name="ScoreboardScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -20,7 +82,6 @@ script = ExtResource("1_yx26b")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("2_qwao4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -42,7 +103,7 @@ horizontal_alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("3_agcct")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ccbma")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -50,9 +111,11 @@ size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s5djc")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -61,23 +124,40 @@ theme_override_constants/margin_bottom = 5
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_4xi4b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1di3c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hsw6v")
 text = "Name
 "
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_4xi4b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1di3c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hsw6v")
 text = "Score
 "
 
 [node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_4xi4b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1di3c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hsw6v")
 text = "Level"
 
 [node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_4xi4b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1di3c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hsw6v")
 text = "Time"
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
