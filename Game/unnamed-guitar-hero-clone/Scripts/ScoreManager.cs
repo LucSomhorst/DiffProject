@@ -8,6 +8,7 @@ public partial class ScoreManager : Node
 	int score;
 	private Label scoreLabel;
 	private Label MultiplierLabel;
+	public int mistakes;
 
 	public int Score
 	{
@@ -49,6 +50,8 @@ public partial class ScoreManager : Node
 	{
 		multiplier =  1.0;
 		MultiplierLabel.Text = multiplier.ToString(CultureInfo.InvariantCulture);
+		mistakes++;
+
 	}
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

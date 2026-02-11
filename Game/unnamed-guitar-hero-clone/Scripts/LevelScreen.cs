@@ -166,7 +166,7 @@ public partial class LevelScreen : Control
 		{
 			timeSpentSeconds = 0;
 		}
-		if (timeSpentSeconds >= 300)
+		if (timeSpentSeconds >= 300 || scoreManager.mistakes == 3 )
 		{
 			blockTimer.Stop();
 
