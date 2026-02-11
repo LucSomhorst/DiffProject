@@ -99,36 +99,60 @@ public partial class LevelScreen : Control
 	
 	public void Constructor(string levelPath)
 	{
-		List<string> values = LoadFile(levelPath);
+		string[] values = LoadFile(levelPath).ToArray();
 
 		// Level name
-		GetNode<Label>("LevelName").Text = values[0];
-		levelName =  values[0];
+		if (values.Length > 0 && !string.IsNullOrWhiteSpace(values[0]))
+		{
+			GetNode<Label>("LevelName").Text = values[0];
+			levelName = values[0];
+		}
+		else
+		{
+			GD.Print("Level name missing in file: " + levelPath);
+			GetNode<Label>("LevelName").Text = "Unknown Level";
+			levelName = "Unknown Level";
+		}
+
 		// Block timer
 		blockTimer = GetNode<Timer>("BlockTimer");
-		var timerValue  = Convert.ToDouble(values[1]);
-		if (timerValue < 10) 
-			blockTimer.WaitTime = timerValue; 
-		else 
-			blockTimer.WaitTime = timerValue/60; 
+		if (values.Length > 1 && double.TryParse(values[1], out double timerValue))
+		{
+			blockTimer.WaitTime = (timerValue < 10) ? timerValue : timerValue / 60;
+		}
+		else
+		{
+			GD.Print("Block timer value missing or invalid in file: " + levelPath);
+			blockTimer.WaitTime = 1.0; // default wait time
+		}
 
 		// Patterns
-		if (!string.IsNullOrWhiteSpace(values[2]))
+		if (values.Length > 2 && !string.IsNullOrWhiteSpace(values[2]))
 		{
 			string[] patterns = values[2]
 				.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-
 			LoadPatterns(patterns);
+		}
+		else
+		{
+			GD.Print("Patterns missing in file: " + levelPath);
 		}
 
 		// Follow pattern flag
-		if (!string.IsNullOrWhiteSpace(values[3]))
+		if (values.Length > 3 && bool.TryParse(values[3], out bool follow))
 		{
-			followPattern = Convert.ToBoolean(values[3]);
+			followPattern = follow;
+		}
+		else
+		{
+			GD.Print("Follow pattern flag missing or invalid in file: " + levelPath);
+			followPattern = false; // default
 		}
 
+		// Start the game
 		NewGame();
 	}
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

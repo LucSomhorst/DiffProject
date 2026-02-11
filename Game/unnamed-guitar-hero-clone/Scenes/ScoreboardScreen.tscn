@@ -1,8 +1,7 @@
+[gd_scene load_steps=8 format=3 uid="uid://45jmhwbimkqs"]
 [ext_resource type="PackedScene" uid="uid://bbcvegqvwiqjs" path="res://scenes/LeaderBoardLine.tscn" id="2_4xi4b"]
 [ext_resource type="StyleBox" uid="uid://ckjp8nlxbpcn7" path="res://Themes/MenuPanelStyle.tres" id="2_qwao4"]
 [ext_resource type="StyleBox" uid="uid://cuio78cmic00o" path="res://Themes/InnerMenuTheme.tres" id="3_agcct"]
-[gd_scene load_steps=8 format=3 uid="uid://45jmhwbimkqs"]
-
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_4xi4b"]
 [ext_resource type="Script" uid="uid://jrobqp7778fp" path="res://scripts/ScoreboardScreen.cs" id="1_yx26b"]
 
