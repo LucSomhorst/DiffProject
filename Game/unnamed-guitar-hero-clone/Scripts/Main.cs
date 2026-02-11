@@ -5,15 +5,22 @@ namespace UnnamedGuitarHeroClone.Scripts;
 
 public partial class Main : Node
 {
+	private ShaderMaterial _bgMaterial;
+	private float _time;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		ApplySettings();
+		var bg = GetNode<ColorRect>("Background");
+		_bgMaterial = (ShaderMaterial)bg.Material;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		_time += (float)delta;
+		_bgMaterial.SetShaderParameter("time", _time);
 	}
 
 	public void StartGame()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b701h26qvp6vr"]
 
-[ext_resource type="Script" uid="uid://cv1xt3ghjj83w" path="res://Scripts/KeybindLine.cs" id="1_cpelg"]
+[ext_resource type="Script" uid="uid://cv1xt3ghjj83w" path="res://scripts/KeybindLine.cs" id="1_cpelg"]
 [ext_resource type="Theme" uid="uid://dsh3vsyfgtpy3" path="res://Themes/MenuTextTheme.tres" id="2_7bqus"]
 [ext_resource type="Theme" uid="uid://u2ki7ed1tlhf" path="res://Themes/MenuButtonTextTheme.tres" id="3_onq6f"]
 
