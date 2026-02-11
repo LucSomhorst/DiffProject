@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://djx2ww8mnc6b7"]
+[gd_scene load_steps=8 format=3 uid="uid://djx2ww8mnc6b7"]
 
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_6y6kj"]
 [ext_resource type="Script" uid="uid://c4igyq4trbhdx" path="res://scripts/LevelSelect.cs" id="1_fo23m"]
@@ -6,6 +6,49 @@
 [ext_resource type="Script" uid="uid://o1qtmjxi2jhh" path="res://Scripts/Popup.cs" id="3_1cx81"]
 
 [sub_resource type="Theme" id="Theme_1qomi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egmj1"]
+bg_color = Color(0.294118, 0.764706, 0.709804, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
+shadow_color = Color(0.294118, 0.764706, 0.709804, 0.784314)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6y6kj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.109804, 0.894118, 0.329412, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
+shadow_color = Color(0.294118, 0.764706, 0.709804, 0.313726)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibarm"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.227451, 0.662745, 0.615686, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 20
+shadow_color = Color(0.294118, 0.764706, 0.709804, 1)
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_fmuyb"]
+Button/styles/hover = SubResource("StyleBoxFlat_egmj1")
+Button/styles/normal = SubResource("StyleBoxFlat_6y6kj")
+Button/styles/pressed = SubResource("StyleBoxFlat_ibarm")
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -32,7 +75,6 @@ theme_override_constants/margin_bottom = 50
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1qomi")
-theme_override_styles/panel = ExtResource("2_1cx81")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -53,6 +95,7 @@ horizontal_alignment = 1
 [node name="LevelBox" type="HFlowContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = SubResource("Theme_fmuyb")
 
 [node name="MenuBtn" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
