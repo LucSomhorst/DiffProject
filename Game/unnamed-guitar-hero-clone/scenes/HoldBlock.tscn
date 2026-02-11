@@ -1,25 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckttnncjmqj2l"]
+[gd_scene format=3 uid="uid://ckttnncjmqj2l"]
 
 [ext_resource type="Script" uid="uid://brwxfolagyt3n" path="res://scripts/HoldBlock.cs" id="1_5qjop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01uos"]
 size = Vector2(40, 150)
 
-[node name="TapBlock" type="CharacterBody2D"]
+[node name="TapBlock" type="CharacterBody2D" unique_id=1557618597]
 collision_mask = 2
 script = ExtResource("1_5qjop")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1541332582]
+z_index = 2
 offset_left = -20.0
 offset_top = -75.0
 offset_right = 20.0
 offset_bottom = 75.0
 color = Color(0.560784, 0, 1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1551617513]
 shape = SubResource("RectangleShape2D_01uos")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=722562258]
 rect = Rect2(-20, -75, 40, 150)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnScreenExited"]
