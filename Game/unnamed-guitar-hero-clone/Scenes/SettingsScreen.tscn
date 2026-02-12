@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://061m6dgp85uf"]
+[gd_scene load_steps=11 format=3 uid="uid://061m6dgp85uf"]
 
 [ext_resource type="Script" uid="uid://wi6sfnbwy546" path="res://scripts/SettingsScreen.cs" id="1_3byia"]
 [ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_n6ukm"]
@@ -94,10 +94,10 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_fdexj")
+tab_alignment = 1
 current_tab = 0
 
 [node name="Options" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -310,6 +310,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Upload song" type="VBoxContainer" parent="MainWindowMargin/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 

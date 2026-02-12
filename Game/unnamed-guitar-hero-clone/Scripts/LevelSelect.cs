@@ -53,9 +53,8 @@ public partial class LevelSelect : Control
 	{
 		var levelBox = GetNode("%LevelBox");
 		
-		var filesToLoad = LoadResources("res://Levels/")
-			.Concat(LoadResources("user://Levels/")
-			.ToList());
+		var filesToLoad = LoadResources("user://Levels/")
+			.ToList();
 		
 		int existingCount = filesToLoad.Count();
 		var rng = new Random();
@@ -83,9 +82,8 @@ public partial class LevelSelect : Control
 				}
 			}
 
-			filesToLoad = LoadResources("res://Levels/")
-				.Concat(LoadResources("user://Levels/")
-					.ToList());
+			filesToLoad = LoadResources("user://Levels/")
+					.ToList();
 		}
 
 		// Buttons genereren
