@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://ccko2l5r203b7"]
+
+[ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_4ncq8"]
+[ext_resource type="Script" uid="uid://cudbirsyw8vg6" path="res://scripts/MultiplayerLevel.cs" id="1_lxv4y"]
+[ext_resource type="PackedScene" uid="uid://b78w6wluwvced" path="res://scenes/TapBlock.tscn" id="2_tjf07"]
+[ext_resource type="PackedScene" uid="uid://ckttnncjmqj2l" path="res://scenes/HoldBlock.tscn" id="3_qgfql"]
+[ext_resource type="Script" uid="uid://cecwjiekplmup" path="res://scripts/ScoreManager.cs" id="3_tjf07"]
+[ext_resource type="PackedScene" uid="uid://d1hoctyciva48" path="res://scenes/Hitzone.tscn" id="6_4ncq8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ncq8"]
+bg_color = Color(0.101960786, 0.12156863, 0.18039216, 0.92156863)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.819608, 0.458824, 0.717647, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.819608, 0.458824, 0.717647, 1)
+shadow_size = 5
+
+[sub_resource type="Curve2D" id="Curve2D_avoqa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 628, 221)
+}
+point_count = 1
+
+[node name="MulitplayerLevel" type="Control" unique_id=1160688754 node_paths=PackedStringArray("Hitzone1", "Hitzone2", "Hitzone3", "Hitzone4")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4ncq8")
+script = ExtResource("1_lxv4y")
+TapBlockScene = ExtResource("2_tjf07")
+HoldBlockScene = ExtResource("3_qgfql")
+Hitzone1 = NodePath("Hitzone")
+Hitzone2 = NodePath("Hitzone2")
+Hitzone3 = NodePath("Hitzone3")
+Hitzone4 = NodePath("Hitzone4")
+
+[node name="Panel" type="Panel" parent="." unique_id=137348876]
+layout_mode = 0
+offset_right = 635.0
+offset_bottom = 721.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ncq8")
+
+[node name="BlockTimer" type="Timer" parent="." unique_id=189199948]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1402049624]
+one_shot = true
+
+[node name="ScoreManager" type="Node" parent="." unique_id=1342984758]
+script = ExtResource("3_tjf07")
+
+[node name="Score" type="Label" parent="ScoreManager" unique_id=49013839]
+anchors_preset = -1
+anchor_right = 0.14921875
+anchor_bottom = 0.15277776
+offset_left = 207.0
+offset_right = 229.0
+offset_bottom = 1.5258789e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Score"
+metadata/_edit_use_anchors_ = true
+
+[node name="Multiplier" type="Label" parent="ScoreManager" unique_id=254035026]
+offset_left = 250.0
+offset_top = 100.0
+offset_right = 450.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 35
+text = "Multiplier"
+
+[node name="BlockSpawn" type="Path2D" parent="." unique_id=576476979]
+curve = SubResource("Curve2D_avoqa")
+
+[node name="BlockSpawnLocation1" type="PathFollow2D" parent="BlockSpawn" unique_id=1657399437]
+position = Vector2(100, 217)
+rotation = 1.13583
+
+[node name="BlockSpawnLocation2" type="PathFollow2D" parent="BlockSpawn" unique_id=544698514]
+position = Vector2(250, 222)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation3" type="PathFollow2D" parent="BlockSpawn" unique_id=46845190]
+position = Vector2(400, 219.99998)
+rotation = 2.27166
+
+[node name="BlockSpawnLocation4" type="PathFollow2D" parent="BlockSpawn" unique_id=949136566]
+position = Vector2(550, 226)
+rotation = -2.8757
+
+[node name="Hitzone" parent="." unique_id=1686061393 instance=ExtResource("6_4ncq8")]
+position = Vector2(100, 600)
+scale = Vector2(0.5, 1)
+
+[node name="Hitzone2" parent="." unique_id=18791515 instance=ExtResource("6_4ncq8")]
+position = Vector2(250, 600)
+scale = Vector2(0.5, 1)
+
+[node name="Hitzone3" parent="." unique_id=1785526210 instance=ExtResource("6_4ncq8")]
+position = Vector2(400, 600)
+scale = Vector2(0.5, 1)
+
+[node name="Hitzone4" parent="." unique_id=59155831 instance=ExtResource("6_4ncq8")]
+position = Vector2(550, 600)
+scale = Vector2(0.5, 1)
+
+[connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]
+[connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]

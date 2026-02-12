@@ -1,0 +1,16 @@
+<Project Sdk="Godot.NET.Sdk/4.4.1">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>UnnamedGuitarHeroClone</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="settings.cfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Levels\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Levels\**" />
+  </ItemGroup>
+</Project>

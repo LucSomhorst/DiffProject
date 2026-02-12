@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf4tyjebj76q4"]
+
+[ext_resource type="Script" uid="uid://btj3ly2va2wsg" path="res://scripts/InputTracker.cs" id="1_vhr10"]
+
+[node name="GlobalInputTracker" type="Node2D"]
+script = ExtResource("1_vhr10")

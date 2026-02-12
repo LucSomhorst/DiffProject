@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://d1hoctyciva48"]
+
+[ext_resource type="Script" uid="uid://fnh3xpbh0ik3" path="res://scripts/Hitzone.cs" id="1_nct28"]
+[ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="2_wug2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nct28"]
+size = Vector2(200, 30)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoxw6"]
+bg_color = Color(0.109804, 0.172549, 0.329412, 1)
+shadow_color = Color(0.294118, 0.764706, 0.709804, 0.313726)
+shadow_size = 10
+
+[node name="Hitzone" type="Area2D" unique_id=1774288093]
+collision_layer = 2
+script = ExtResource("1_nct28")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1624123591]
+light_mask = 3
+visibility_layer = 3
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -15.0
+offset_right = 100.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=218092830]
+shape = SubResource("RectangleShape2D_nct28")
+
+[node name="Panel" type="Panel" parent="." unique_id=821840680]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -15.0
+offset_right = 100.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wug2g")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xoxw6")

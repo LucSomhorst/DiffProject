@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvg8t3sb3wwaf"]
-
-[ext_resource type="Script" uid="uid://d13hjs6oi537r" path="res://scripts/serial_reader.gd" id="1_f7mf5"]
-
-[node name="SerialReader" type="Node"]
-script = ExtResource("1_f7mf5")

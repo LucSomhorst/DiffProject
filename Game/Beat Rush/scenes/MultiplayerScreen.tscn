@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ch7507st0a2nl"]
+
+[ext_resource type="PackedScene" uid="uid://ccko2l5r203b7" path="res://scenes/MultiplayerLevel.tscn" id="1_2owfr"]
+[ext_resource type="Theme" uid="uid://dhac0u73avnd4" path="res://Themes/MainTheme.tres" id="1_jon2p"]
+[ext_resource type="Script" uid="uid://b6buiu2acf1v2" path="res://scripts/MultiplayerScreen.cs" id="1_v6lmf"]
+
+[node name="MultiplayerScreen" type="Control" unique_id=1298325899]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jon2p")
+script = ExtResource("1_v6lmf")
+
+[node name="Panel" type="Panel" parent="." unique_id=110961312]
+layout_mode = 0
+offset_right = 1288.0
+offset_bottom = 724.0
+
+[node name="MultiplayerLevel" parent="." unique_id=320503299 instance=ExtResource("1_2owfr")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_bottom = 40.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MultiplayerLevel2" parent="." unique_id=1848656913 instance=ExtResource("1_2owfr")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.498
+anchor_right = 0.5
+anchor_bottom = 0.082
+offset_left = -0.440063
+offset_top = -4.0
+offset_right = -0.440063
+offset_bottom = -7.28
+grow_horizontal = 1
+grow_vertical = 1
